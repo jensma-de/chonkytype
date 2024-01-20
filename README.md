@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-  ChonkyType Keyboard for Unihertz Titan
+  chonkytype Keyboard for Unihertz Titan
 </h1>
 
 <p>
@@ -20,14 +20,14 @@
 <br>
 <h2>Installation</h2>
 <ul>
-  <li>Install the apk</li>
-  <li>Open settings</li>
-   <li>Navigate to system -> Languages and input -> On screen keyboard</li>
-   <li>Enable chonkytype and Android stock keyboard (AOSP)</li>
-   <li>Disable all other keyboards</li>
-   <li>Start chonkytype app</li>
-   <li>Tap on the "Test here!" input field</li>
-   <li>AOSP keyboard should pop up. Long press its space bar</li>
-   <li>Choose chonkytype from the selection menu</li>
-   <li>Done, have fun customizing it!</li>
+  <li>Install the APK file.</li>
+  <li>Open the settings menu on your device.</li>
+  <li>Navigate to 'System' -> 'Languages & Input' -> 'On-screen Keyboard'.</li>
+  <li>Enable both 'chonkytype' and the 'Android Stock Keyboard (AOSP)'.</li>
+  <li>Disable all other keyboards.</li>
+  <li>Launch the chonkytype app.</li>
+  <li>Tap on the "Test Here!" input field.</li>
+  <li>The AOSP keyboard should appear. Long-press its space bar.</li>
+  <li>Select 'chonkytype' from the menu that appears.</li>
+  <li>Installation complete! Enjoy customizing your keyboard.</li>
 </ul>
