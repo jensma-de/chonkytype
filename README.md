@@ -6,9 +6,16 @@
   chonkytype Keyboard for Unihertz Titan
 </h1>
 
-<p>
+<p align="center">
   <strong>ChonkyType</strong> is a user-friendly yet highly customizable keyboard, designed specifically for the Unihertz Titan.
 </p>
+<p align="center">
+  <img src="https://github.com/jensma-de/chonkytype/blob/main/assets/2.jpg" width="400" />
+  <img src="https://github.com/jensma-de/chonkytype/blob/main/assets/1.jpg" width="400" />
+</p>
+
+</p>
+
 <br>
 <h2>Features</h2>
 <ul>
