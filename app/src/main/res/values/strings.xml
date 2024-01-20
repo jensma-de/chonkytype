@@ -1,0 +1,5 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">chonkytype</string>
+    <string name="service_label" tools:ignore="DuplicateDefinition">chonkytype</string>
+
+</resources>

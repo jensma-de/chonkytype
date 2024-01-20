@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/linearLayout"
+    android:padding="0dp"
+    android:layout_margin="0dp"
+    android:translationY="5dp"
+    android:background="@drawable/background"
+    android:textColor="#ffffff"
+    >
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_swap_keys"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Swap Z and Y keys of physical keyboard "
+        android:textColor="#ffffff"
+        android:paddingLeft="10dp"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/vibrate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vibrate"
+        android:textColor="#ffffff"
+        android:paddingLeft="10dp"
+        />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/altkeyboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enable ALT keyboard "
+        android:textColor="#ffffff"
+        android:paddingLeft="10dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Standard keyboard"
+        android:textAlignment="center"
+        android:textColor="#aaa"
+        android:textSize="10sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Buttons -->
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button1"
+            android:text="C"
+            android:textColor="#D3D3D3"
+            />
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+
+            android:textColor="#D3D3D3"
+            android:id="@+id/button2"
+            android:text="O"/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button3"
+            android:textColor="#D3D3D3"
+            android:text="N"/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button4"
+            android:textColor="#D3D3D3"
+            android:text="F"/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button5"
+            android:textColor="#D3D3D3"
+            android:text="I"/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button6"
+            android:textColor="#D3D3D3"
+            android:text="G"/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button7"
+            android:textColor="#D3D3D3"
+            android:text="."/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button8"
+            android:textColor="#D3D3D3"
+            android:text="."/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button9"
+            android:textColor="#D3D3D3"
+            android:text="M"/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button10"
+            android:textColor="#D3D3D3"
+            android:text="E"/>
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ALT keyboard"
+        android:textAlignment="center"
+        android:textColor="#aaa"
+        android:textSize="10sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+
+        <!-- Buttons -->
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button11"
+            android:text="C"
+            android:textColor="#D3D3D3"
+            />
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+
+            android:textColor="#D3D3D3"
+            android:id="@+id/button12"
+            android:text="O"/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button13"
+            android:textColor="#D3D3D3"
+            android:text="N"/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button14"
+            android:textColor="#D3D3D3"
+            android:text="F"/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button15"
+            android:textColor="#D3D3D3"
+            android:text="I"/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button16"
+            android:textColor="#D3D3D3"
+            android:text="G"/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button17"
+            android:textColor="#D3D3D3"
+            android:text="."/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button18"
+            android:textColor="#D3D3D3"
+            android:text="."/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button19"
+            android:textColor="#D3D3D3"
+            android:text="M"/>
+
+        <Button
+            android:textAllCaps="false"
+            android:layout_width="58dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:textSize="34sp"
+            android:translationX="0dp"
+            android:id="@+id/button20"
+            android:textColor="#D3D3D3"
+            android:text="E"/>
+
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="1dp">
+
+        <Button
+            android:id="@+id/apply_layout_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apply settings" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        />
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine3"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Test here!"
+        android:inputType="textMultiLine"
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#ffffff" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="1dp">
+
+        <Button
+            android:id="@+id/help_layout_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Info" />
+    </LinearLayout>
+
+
+</LinearLayout>

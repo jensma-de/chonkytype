@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <set>
+            <objectAnimator
+                android:propertyName="backgroundColor"
+                android:duration="0"
+                android:valueTo="#AAAAAA"
+                android:valueType="intType" />
+        </set>
+    </item>
+    <item>
+        <set>
+            <objectAnimator
+                android:propertyName="backgroundColor"
+                android:duration="250"
+                android:valueTo="#000000"
+                android:valueType="intType" />
+        </set>
+    </item>
+</selector>
