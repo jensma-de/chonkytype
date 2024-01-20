@@ -61,10 +61,19 @@ class SettingsActivity : AppCompatActivity() {
         applyLayoutButton.setOnClickListener {
 
             notifyKeyboardService()
-            Toast.makeText(this, "Settings applied", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Settings applied!", Toast.LENGTH_SHORT).show()
         }
 
 
+        val autopopupSwitch = findViewById<SwitchCompat>(R.id.autopopup)
+        autopopupSwitch.isChecked = sharedPreferences.getBoolean("autopopup_enabled", false)
+        autopopupSwitch.setOnCheckedChangeListener { _, isChecked ->
+            with(sharedPreferences.edit()) {
+                putBoolean("autopopup_enabled", isChecked)
+                apply()
+            }
+            notifyKeyboardService()
+        }
 
         val vibrateSwitch = findViewById<SwitchCompat>(R.id.vibrate)
         vibrateSwitch.isChecked = sharedPreferences.getBoolean("vibrate", true)

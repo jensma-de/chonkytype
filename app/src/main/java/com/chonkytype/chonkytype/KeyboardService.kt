@@ -10,12 +10,16 @@ import android.inputmethodservice.InputMethodService
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Log
 import android.view.KeyCharacterMap
 import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
+import android.widget.Toast
 import java.util.Locale
 
 class KeyboardService : InputMethodService() {
@@ -34,6 +38,17 @@ class KeyboardService : InputMethodService() {
         }
     }
    */
+
+    override fun onStartInputView(info: EditorInfo, restarting: Boolean) {
+        super.onStartInputView(info, restarting)
+        // Request focus for the input field
+        inputView.requestFocus()
+    }
+
+    private fun showOnScreenKeyboard() {
+        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+    }
 
     private val settingsUpdateReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -66,7 +81,10 @@ class KeyboardService : InputMethodService() {
     }
 
 
-
+    private fun isAutoPopupEnabled(): Boolean {
+        val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("autopopup_enabled", false)
+    }
 
 
     private fun updateKeyboardLayout() {
@@ -113,6 +131,10 @@ class KeyboardService : InputMethodService() {
 
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent): Boolean {
+
+
+
+
         if (keyCode == KeyEvent.KEYCODE_ALT_LEFT || keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
             isAltPressed = false
             if (isAltKeyboardEnabled) {
@@ -149,11 +171,14 @@ class KeyboardService : InputMethodService() {
         }
     }
 
+
+
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (event.deviceId != KeyCharacterMap.VIRTUAL_KEYBOARD && isAutoPopupEnabled()) {
+            showOnScreenKeyboard()
+        }
 
         //val keyLabel = KeyEvent.keyCodeToString(keyCode)
-
-
 
         isShiftPressed = event.isShiftPressed
 
@@ -196,6 +221,10 @@ class KeyboardService : InputMethodService() {
 
 
     override fun onCreateInputView(): View {
+        inputView = layoutInflater.inflate(R.layout.keyboard_layout, null)
+        inputView.visibility = View.GONE // Standardmäßig ist die Tastatur unsichtbar
+
+
         inputView = layoutInflater.inflate(R.layout.keyboard_layout, null)
 
         val emojiContainer = inputView.findViewById<LinearLayout>(R.id.emoji_container)
@@ -348,10 +377,10 @@ class KeyboardService : InputMethodService() {
 
     private fun vibrate() {
         if (Build.VERSION.SDK_INT >= 26) {
-            vibrator.vibrate(VibrationEffect.createOneShot(22, VibrationEffect.DEFAULT_AMPLITUDE))
+            vibrator.vibrate(VibrationEffect.createOneShot(28, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
             @Suppress("DEPRECATION")
-            vibrator.vibrate(22)
+            vibrator.vibrate(28)
         }
     }
 }
