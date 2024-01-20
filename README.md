@@ -26,6 +26,10 @@
   <li>Integrated emoji submenu for quick access</li>
 </ul>
 <br>
+<h2>Download</h2>
+The latest release is availabe here: <a href="https://github.com/jensma-de/chonkytype/releases/download/release/app-debug.apk">Download</a>
+<br>
+<br>
 <h2>Installation</h2>
 <ul>
   <li>Install the APK file.</li>
@@ -39,6 +43,10 @@
   <li>Select 'chonkytype' from the menu that appears.</li>
   <li>Installation complete! Enjoy customizing your keyboard.</li>
 </ul>
+
+
+
+
 
 <br>
 <br>
