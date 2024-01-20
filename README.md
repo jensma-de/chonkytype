@@ -7,8 +7,9 @@
 </h1>
 
 <p align="center">
-  <strong>ChonkyType</strong> is a user-friendly yet highly customizable keyboard, designed specifically for the Unihertz Titan.
+  <strong>ChonkyType</strong> is a user-friendly yet customizable keyboard, designed specifically for the Unihertz Titan.
 </p>
+<br>
 <p align="center">
   <img src="https://github.com/jensma-de/chonkytype/blob/main/assets/2.jpg" width="400" />
   <img src="https://github.com/jensma-de/chonkytype/blob/main/assets/1.jpg" width="400" />
@@ -26,6 +27,10 @@
   <li>Integrated emoji submenu for quick access</li>
 </ul>
 <br>
+<h2>Download</h2>
+The latest release is availabe here: <a href="https://github.com/jensma-de/chonkytype/releases/download/release/app-debug.apk">Download</a>
+<br>
+<br>
 <h2>Installation</h2>
 <ul>
   <li>Install the APK file.</li>
@@ -40,7 +45,12 @@
   <li>Installation complete! Enjoy customizing your keyboard.</li>
 </ul>
 
+
+
+
+
 <br>
 <br>
 <hr>
-Greatly learned from https://github.com/modularizer/HelloWorldKeyboard!
+Greatly learned from https://github.com/modularizer/HelloWorldKeyboard!<br>
+Join us on https://discord.gg/h7XwqeKb :)
