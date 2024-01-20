@@ -31,3 +31,8 @@
   <li>Select 'chonkytype' from the menu that appears.</li>
   <li>Installation complete! Enjoy customizing your keyboard.</li>
 </ul>
+
+<br>
+<br>
+<hr>
+Greatly learned from https://github.com/modularizer/HelloWorldKeyboard!
