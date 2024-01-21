@@ -45,13 +45,13 @@ The latest release is availabe here: <a href="https://github.com/jensma-de/chonk
   <li>Select 'chonkytype' from the menu that appears.</li>
   <li>Installation complete! Enjoy customizing your keyboard.</li>
 </ul>
-
-
-
-
-
 <br>
-<br>
+<p align="center">
+  <img src="https://github.com/jensma-de/chonkytype/blob/main/assets/IMG_20240121_152434.jpg" width="400" />
+
+</p>
+
+
 <hr>
 Greatly learned from https://github.com/modularizer/HelloWorldKeyboard!<br>
 Join us on https://discord.gg/h7XwqeKb :)
