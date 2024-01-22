@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-  chonkytype Keyboard for Unihertz Titan
+  chonkytype keyboard for Unihertz Titan
 </h1>
 
 <p align="center">
