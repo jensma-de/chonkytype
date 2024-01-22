@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-  chonkytype Keyboard for Unihertz Titan
+  ChonkyType Keyboard for Unihertz Titan
 </h1>
 
 <p align="center">
@@ -23,7 +23,7 @@
   <li>10 fully customizable buttons for enhanced user experience</li>
   <li>ALT keyboard feature allowing for an alternative layout</li>
   <li>Option to switch 'Y' and 'Z' keys on the physical keyboard</li>
-  <li>Option to automatically open chonkytype on physical input* </li>
+  <li>Option to automatically open ChonkyType on physical input* </li>
   <li>Integrated emoji submenu for quick access</li>
 </ul>
 *: apps can suppress this
@@ -37,12 +37,12 @@ The latest release is availabe here: <a href="https://github.com/jensma-de/chonk
   <li>Install the APK file.</li>
   <li>Open the settings menu on your device.</li>
   <li>Navigate to 'System' -> 'Languages & Input' -> 'On-screen Keyboard'.</li>
-  <li>Enable both 'chonkytype' and the 'Android Stock Keyboard (AOSP)'.</li>
+  <li>Enable both 'ChonkyType' and the 'Android Stock Keyboard (AOSP)'.</li>
   <li>Disable all other keyboards.</li>
-  <li>Launch the chonkytype app.</li>
+  <li>Launch the ChonkyType app.</li>
   <li>Tap on the "Test Here!" input field.</li>
   <li>The AOSP keyboard should appear. Long-press its space bar.</li>
-  <li>Select 'chonkytype' from the menu that appears.</li>
+  <li>Select 'ChonkyType' from the menu that appears.</li>
   <li>Installation complete! Enjoy customizing your keyboard.</li>
 </ul>
 <br>
