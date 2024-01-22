@@ -1,0 +1,21 @@
+chonkytype is a user-friendly yet customizable keyboard, designed specifically for the Unihertz Titan.
+
+Features
+10 fully customizable buttons for enhanced user experience
+ALT keyboard feature allowing for an alternative layout
+Option to switch 'Y' and 'Z' keys on the physical keyboard
+Option to automatically open chonkytype on physical input*
+Integrated emoji submenu for quick access
+*: apps can suppress this
+
+Installation
+Install the APK file.
+Open the settings menu on your device.
+Navigate to 'System' -> 'Languages & Input' -> 'On-screen Keyboard'.
+Enable both 'chonkytype' and the 'Android Stock Keyboard (AOSP)'.
+Disable all other keyboards.
+Launch the chonkytype app.
+Tap on the "Test Here!" input field.
+The AOSP keyboard should appear. Long-press its space bar.
+Select 'chonkytype' from the menu that appears.
+Installation complete! Enjoy customizing your keyboard.
