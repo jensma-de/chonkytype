@@ -29,7 +29,7 @@
 *: apps can suppress this
 <br>
 <h2>Download</h2>
-The latest release is availabe here: <a href="https://github.com/jensma-de/chonkytype/releases/download/v1.0a/chonkytype.apk">Download</a>
+The latest release is availabe here: <a href="https://github.com/jensma-de/chonkytype/releases/latest">Download</a>
 <br>
 <br>
 <h2>Installation</h2>
