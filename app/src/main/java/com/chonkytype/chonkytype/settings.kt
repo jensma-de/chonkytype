@@ -61,7 +61,7 @@ class SettingsActivity : AppCompatActivity() {
         applyLayoutButton.setOnClickListener {
 
             notifyKeyboardService()
-            Toast.makeText(this, "Settings applied!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Layout applied!", Toast.LENGTH_SHORT).show()
         }
 
 
@@ -84,6 +84,17 @@ class SettingsActivity : AppCompatActivity() {
             }
             notifyKeyboardService()
         }
+
+        val physivibrate = findViewById<SwitchCompat>(R.id.physivibrate)
+        physivibrate.isChecked = sharedPreferences.getBoolean("physivibrate", true)
+        physivibrate.setOnCheckedChangeListener { _, isChecked ->
+            with(sharedPreferences.edit()) {
+                putBoolean("physivibrate", isChecked)
+                apply()
+            }
+            notifyKeyboardService()
+        }
+
 
         val swapKeysSwitch = findViewById<SwitchCompat>(R.id.switch_swap_keys)
         swapKeysSwitch.isChecked = sharedPreferences.getBoolean("swap_keys", false)
@@ -181,7 +192,7 @@ class SettingsActivity : AppCompatActivity() {
                 "...and everyone else on the unihertz Titan discord server!\n" +
                 "\n" +
                 "Thanks to modulizer for github.com/modularizer/HelloWorldKeyboard!\n\n" +
-                "v1.0 - github.com/chonkytype")
+                "v1.1 - github.com/chonkytype")
         builder.setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
         builder.show()
     }

@@ -10,7 +10,6 @@ import android.inputmethodservice.InputMethodService
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.util.Log
 import android.view.KeyCharacterMap
 import android.view.KeyEvent
 import android.view.View
@@ -19,8 +18,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
-import android.widget.Toast
 import java.util.Locale
+
 
 class KeyboardService : InputMethodService() {
     private lateinit var vibrator: Vibrator
@@ -28,10 +27,11 @@ class KeyboardService : InputMethodService() {
     private var isShiftPressed = false
     private var isSwapEnabled = false
     private var shouldVibrate = true
+    private var shouldPhysiVibrate = true
     private var isAltKeyboardEnabled = false
     private var isAltPressed = false
     private var isEmojiMenuOpen = false
-
+    private var isKeyBeingPressed = false
     /*
     private val updateReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -87,6 +87,7 @@ class KeyboardService : InputMethodService() {
         val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
         isSwapEnabled = sharedPreferences.getBoolean("swap_keys", false)
         shouldVibrate = sharedPreferences.getBoolean("vibrate", true)
+        shouldPhysiVibrate = sharedPreferences.getBoolean("physivibrate", true)
         isAltKeyboardEnabled = sharedPreferences.getBoolean("altkeyboard", false)
     }
 
@@ -148,7 +149,7 @@ class KeyboardService : InputMethodService() {
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent): Boolean {
 
-
+        isKeyBeingPressed = false
 
 
         if (keyCode == KeyEvent.KEYCODE_ALT_LEFT || keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
@@ -194,15 +195,27 @@ class KeyboardService : InputMethodService() {
             showOnScreenKeyboard()
         }
 
-        //val keyLabel = KeyEvent.keyCodeToString(keyCode)
+
+        if (!isKeyBeingPressed && event.deviceId != KeyCharacterMap.VIRTUAL_KEYBOARD) {
+            if (shouldVibrateOnPhysicalInput() && keyCode != KeyEvent.KEYCODE_ALT_LEFT && keyCode != KeyEvent.KEYCODE_ALT_RIGHT && keyCode != KeyEvent.KEYCODE_SHIFT_LEFT && keyCode != KeyEvent.KEYCODE_SHIFT_RIGHT) {
+                vibrate()
+                isKeyBeingPressed = true
+            }
+        }
+/*
+        if (!isKeyBeingPressed && event.deviceId != KeyCharacterMap.VIRTUAL_KEYBOARD) {
+            if (shouldVibrateOnPhysicalInput()) {
+                vibrate()
+                isKeyBeingPressed = true
+            }
+        }
+*/
 
         isShiftPressed = event.isShiftPressed
 
         if (keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
-
             isAltPressed = true
             if (isAltKeyboardEnabled) {
-
                 toggleAltKeyboard(true)
             }
             return true
@@ -214,15 +227,19 @@ class KeyboardService : InputMethodService() {
                     KeyEvent.KEYCODE_Z -> {
                         val textToInput = if (isAltPressed) "!" else "y"
                         inputText(textToInput, isShiftPressed, fromPhysicalKeyboard = true)
+
                         return true
                     }
                     KeyEvent.KEYCODE_Y -> {
                         val textToInput = if (isAltPressed) ")" else "z"
                         inputText(textToInput, isShiftPressed, fromPhysicalKeyboard = true)
+
                         return true
                     }
                 }
             }
+
+
         }
 
         if (keyCode == KeyEvent.KEYCODE_SHIFT_LEFT || keyCode == KeyEvent.KEYCODE_SHIFT_RIGHT) {
@@ -233,6 +250,7 @@ class KeyboardService : InputMethodService() {
 
         return super.onKeyDown(keyCode, event)
     }
+
 
 
 
@@ -457,9 +475,15 @@ class KeyboardService : InputMethodService() {
         if (!fromPhysicalKeyboard && shouldVibrate()) {
             vibrate()
         }
-    } fun shouldVibrate(): Boolean {
+    }
+    fun shouldVibrate(): Boolean {
         val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
         return sharedPreferences.getBoolean("vibrate", true)
+    }
+
+    fun shouldVibrateOnPhysicalInput(): Boolean {
+        val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("physivibrate", true)
     }
 
     private fun vibrate() {

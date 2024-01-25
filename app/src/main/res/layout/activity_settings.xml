@@ -26,11 +26,19 @@
         android:id="@+id/vibrate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vibrate"
+        android:text="Vibrate on soft input "
         android:textColor="#ffffff"
         android:paddingLeft="10dp"
         />
 
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/physivibrate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vibrate on physical input "
+        android:textColor="#ffffff"
+        android:paddingLeft="10dp"
+        />
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/altkeyboard"
         android:layout_width="wrap_content"
@@ -354,7 +362,7 @@
             android:id="@+id/apply_layout_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Apply settings" />
+            android:text="Apply layout" />
     </LinearLayout>
 
     <View
