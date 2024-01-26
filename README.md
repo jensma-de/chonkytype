@@ -52,7 +52,12 @@ The latest release is availabe here: <a href="https://github.com/jensma-de/chonk
 
 </p>
 
-
+ToDo:
+- flickering alt keyboard on holding alt when in sticky mode
+- shift the letters up a bit for better readability
+- responsive design for Titan slim
+- improve auto popup on physical input
+  
 <hr>
 Greatly learned from https://github.com/modularizer/HelloWorldKeyboard!<br>
 Join us on https://discord.gg/h7XwqeKb :)
