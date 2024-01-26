@@ -64,12 +64,22 @@ class SettingsActivity : AppCompatActivity() {
             Toast.makeText(this, "Layout applied!", Toast.LENGTH_SHORT).show()
         }
 
-
+/* always enabled
         val autopopupSwitch = findViewById<SwitchCompat>(R.id.autopopup)
         autopopupSwitch.isChecked = sharedPreferences.getBoolean("autopopup_enabled", false)
         autopopupSwitch.setOnCheckedChangeListener { _, isChecked ->
             with(sharedPreferences.edit()) {
                 putBoolean("autopopup_enabled", isChecked)
+                apply()
+            }
+            notifyKeyboardService()
+        }
+*/
+        val stickyAltSwitch = findViewById<SwitchCompat>(R.id.stickyalt)
+        stickyAltSwitch.isChecked = sharedPreferences.getBoolean("stickyalt", false)
+        stickyAltSwitch.setOnCheckedChangeListener { _, isChecked ->
+            with(sharedPreferences.edit()) {
+                putBoolean("stickyalt", isChecked)
                 apply()
             }
             notifyKeyboardService()

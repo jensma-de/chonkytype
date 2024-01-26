@@ -29,9 +29,12 @@ class KeyboardService : InputMethodService() {
     private var shouldVibrate = true
     private var shouldPhysiVibrate = true
     private var isAltKeyboardEnabled = false
+
     private var isAltPressed = false
     private var isEmojiMenuOpen = false
     private var isKeyBeingPressed = false
+    private var isStickyAltActive = false
+    private var isstickyaltenabled = false
     /*
     private val updateReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -89,6 +92,7 @@ class KeyboardService : InputMethodService() {
         shouldVibrate = sharedPreferences.getBoolean("vibrate", true)
         shouldPhysiVibrate = sharedPreferences.getBoolean("physivibrate", true)
         isAltKeyboardEnabled = sharedPreferences.getBoolean("altkeyboard", false)
+        isstickyaltenabled = sharedPreferences.getBoolean("stickyalt", false)
     }
 
 
@@ -97,12 +101,12 @@ class KeyboardService : InputMethodService() {
         unregisterReceiver(settingsUpdateReceiver)
     }
 
-
+/* always enabled
     private fun isAutoPopupEnabled(): Boolean {
         val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
         return sharedPreferences.getBoolean("autopopup_enabled", false)
     }
-
+*/
 
     private fun updateKeyboardLayout() {
         val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
@@ -151,6 +155,15 @@ class KeyboardService : InputMethodService() {
 
         isKeyBeingPressed = false
 
+        if (keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
+            if (!stickyaltenabled()) {
+                isAltPressed = false
+                if (isAltKeyboardEnabled) {
+                    toggleAltKeyboard(false)
+                }
+            }
+            return true
+        }
 
         if (keyCode == KeyEvent.KEYCODE_ALT_LEFT || keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
             isAltPressed = false
@@ -191,7 +204,7 @@ class KeyboardService : InputMethodService() {
 
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (event.deviceId != KeyCharacterMap.VIRTUAL_KEYBOARD && isAutoPopupEnabled()) {
+        if (event.deviceId != KeyCharacterMap.VIRTUAL_KEYBOARD) {
             showOnScreenKeyboard()
         }
 
@@ -210,6 +223,27 @@ class KeyboardService : InputMethodService() {
             }
         }
 */
+
+        if (keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
+            if (stickyaltenabled()) {
+                if (!isStickyAltActive) {
+                    isStickyAltActive = true
+                    isAltPressed = true
+                    toggleAltKeyboard(true)
+                } else {
+                    isStickyAltActive = false
+                    isAltPressed = false
+                    toggleAltKeyboard(false)
+                }
+                return true
+            } else {
+                isAltPressed = true
+                if (isAltKeyboardEnabled) {
+                    toggleAltKeyboard(true)
+                }
+                return true
+            }
+        }
 
         isShiftPressed = event.isShiftPressed
 
@@ -484,6 +518,11 @@ class KeyboardService : InputMethodService() {
     fun shouldVibrateOnPhysicalInput(): Boolean {
         val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
         return sharedPreferences.getBoolean("physivibrate", true)
+    }
+
+    fun stickyaltenabled(): Boolean {
+        val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("stickyalt", true)
     }
 
     private fun vibrate() {
