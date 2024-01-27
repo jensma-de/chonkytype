@@ -56,6 +56,7 @@ ToDo:
 - ~~flickering alt keyboard on holding alt when in sticky mode~~
 - ~~shift the letters up a bit for better readability~~
 - ~~responsive design for Titan slim~~
+- add slider for vibration length/intensity
 - improve auto popup on physical input
 - redo emoji submenu for faster popup
 - long press alt/shift/emoji for sticky?
