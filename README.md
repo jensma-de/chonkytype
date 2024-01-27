@@ -60,7 +60,7 @@ ToDo:
 - improve auto popup on physical input
 - redo emoji submenu for faster popup (+categories/recently used?)
 - long press alt/shift/emoji for sticky?
-- fox 1px emoji submenu flicker
+- fix 1px emoji submenu flicker
   
 <hr>
 Greatly learned from https://github.com/modularizer/HelloWorldKeyboard!<br>
