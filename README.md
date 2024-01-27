@@ -3,11 +3,11 @@
 </p>
 
 <h1 align="center">
-  chonkytype keyboard for Unihertz Titan
+  chonkytype keyboard for Unihertz Titan & Titan Slim.
 </h1>
 
 <p align="center">
-  <strong>chonkytype</strong> is a user-friendly yet customizable keyboard, designed specifically for the Unihertz Titan.
+  <strong>chonkytype</strong> is a user-friendly yet customizable keyboard, designed specifically for the Unihertz Titan & Titan Slim.
 </p>
 <br>
 <p align="center">
@@ -53,10 +53,12 @@ The latest release is availabe here: <a href="https://github.com/jensma-de/chonk
 </p>
 
 ToDo:
-- flickering alt keyboard on holding alt when in sticky mode
-- shift the letters up a bit for better readability
-- responsive design for Titan slim
+- ~~flickering alt keyboard on holding alt when in sticky mode~~
+- ~~shift the letters up a bit for better readability~~
+- ~~responsive design for Titan slim~~
 - improve auto popup on physical input
+- redo emoji submenu for faster popup
+- long press alt/shift/emoji for sticky?
   
 <hr>
 Greatly learned from https://github.com/modularizer/HelloWorldKeyboard!<br>
