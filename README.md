@@ -7,7 +7,7 @@
 </h1>
 
 <p align="center">
-  <strong>chonkytype</strong> is a user-friendly yet customizable keyboard, designed specifically for the Unihertz Titan & Titan Slim.
+  <strong>chonkytype</strong> is a user-friendly yet customizable keyboard, designed specifically for the Unihertz Titan/Slim/Pocket.
 </p>
 <br>
 <p align="center">
