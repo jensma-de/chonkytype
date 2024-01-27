@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-  chonkytype keyboard for Unihertz Titan & Titan Slim.
+  chonkytype keyboard for Unihertz Titan/Slim/Pocket.
 </h1>
 
 <p align="center">
