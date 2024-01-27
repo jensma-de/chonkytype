@@ -58,7 +58,7 @@ ToDo:
 - ~~responsive design for Titan slim~~
 - add slider for vibration length/intensity
 - improve auto popup on physical input
-- redo emoji submenu for faster popup
+- redo emoji submenu for faster popup (+categories/recently used?)
 - long press alt/shift/emoji for sticky?
   
 <hr>
