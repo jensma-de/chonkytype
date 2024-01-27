@@ -155,17 +155,7 @@ class KeyboardService : InputMethodService() {
 
         isKeyBeingPressed = false
 
-        if (keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
-            if (!stickyaltenabled()) {
-                isAltPressed = false
-                if (isAltKeyboardEnabled) {
-                    toggleAltKeyboard(false)
-                }
-            }
-            return true
-        }
-
-        if (keyCode == KeyEvent.KEYCODE_ALT_LEFT || keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
+        if ((keyCode == KeyEvent.KEYCODE_ALT_RIGHT) && !stickyaltenabled()) {
             isAltPressed = false
             if (isAltKeyboardEnabled) {
                 toggleAltKeyboard(false)
@@ -173,7 +163,7 @@ class KeyboardService : InputMethodService() {
             return true
         }
 
-        if (keyCode == KeyEvent.KEYCODE_SHIFT_LEFT || keyCode == KeyEvent.KEYCODE_SHIFT_RIGHT) {
+        if (keyCode == KeyEvent.KEYCODE_SHIFT_LEFT) {
             isShiftPressed = false
             updateKeyLabels()
             return true
@@ -224,26 +214,22 @@ class KeyboardService : InputMethodService() {
         }
 */
 
-        if (keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
-            if (stickyaltenabled()) {
-                if (!isStickyAltActive) {
-                    isStickyAltActive = true
-                    isAltPressed = true
-                    toggleAltKeyboard(true)
-                } else {
-                    isStickyAltActive = false
-                    isAltPressed = false
-                    toggleAltKeyboard(false)
-                }
-                return true
+        if ((keyCode == KeyEvent.KEYCODE_ALT_RIGHT) && stickyaltenabled()) {
+            isAltPressed = !isAltPressed
+            if (isAltPressed) {
+                toggleAltKeyboard(true)
             } else {
-                isAltPressed = true
-                if (isAltKeyboardEnabled) {
-                    toggleAltKeyboard(true)
-                }
-                return true
+                toggleAltKeyboard(false)
             }
+            return true
+        } else if (keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
+            isAltPressed = true
+            if (isAltKeyboardEnabled) {
+                toggleAltKeyboard(true)
+            }
+            return true
         }
+
 
         isShiftPressed = event.isShiftPressed
 

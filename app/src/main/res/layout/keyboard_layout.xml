@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,199 +10,306 @@
     android:layout_margin="0dp"
     android:translationY="5dp">
 
+    <View
+        android:id="@+id/separator"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <ScrollView
         android:id="@+id/emoji_scroll_view"
         android:layout_width="1000dp"
-    android:layout_height="200dp"
+        android:layout_height="200dp"
         android:scrollbars="vertical"
-    android:visibility="gone"
-    android:background="#333333"
+        android:visibility="gone"
+        android:background="#333333"
 
         >
 
-    <LinearLayout
-        android:id="@+id/emoji_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <!-- emojis are added by activity -->
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/emoji_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- emojis are added by activity -->
+        </LinearLayout>
     </ScrollView>
 
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:visibility="visible"
-
-        />
-
-    <Button
-        android:id="@+id/b1"
-        android:layout_width="58dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button1_container"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_margin="0dp"
-        android:background="@drawable/button_background"
-        android:paddingTop="-25dp"
-        android:paddingBottom="0dp"
-
-        android:text="O"
-        android:textColor="#D3D3D3"
-        android:textSize="34sp"
-        android:translationY="1dp"
-        android:translationX="-1dp"
+        app:layout_constraintWidth_percent="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/b1"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_background"
+            android:text="O"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="-5dp"
+            android:gravity="top|center_horizontal"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <Button
-        android:id="@+id/b2"
-        android:layout_width="58dp"
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button2_container"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_margin="0dp"
-        android:background="@drawable/button_background"
-        android:paddingTop="-25dp"
-        android:paddingBottom="0dp"
+        app:layout_constraintWidth_percent="0.1"
+        app:layout_constraintStart_toEndOf="@+id/button1_container"
+        app:layout_constraintTop_toTopOf="parent">>
 
-        android:text="O"
-        android:textColor="#D3D3D3"
-        android:textSize="34sp"
-        android:translationY="1dp"
-        android:translationX="-1dp"
-        app:layout_constraintStart_toEndOf="@+id/b1"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/b2"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_background"
+            android:text="O"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="-5dp"
+            android:gravity="top|center_horizontal"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/b3"
-        android:layout_width="58dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button3_container"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_margin="0dp"
-        android:background="@drawable/button_background"
-        android:paddingTop="-25dp"
-        android:paddingBottom="0dp"
+        app:layout_constraintWidth_percent="0.1"
+        app:layout_constraintStart_toEndOf="@+id/button2_container"
+        app:layout_constraintTop_toTopOf="parent">>
 
-        android:text="N"
-        android:textColor="#D3D3D3"
-        android:textSize="34sp"
-        android:translationY="1dp"
-        android:translationX="-1dp"
-        app:layout_constraintStart_toEndOf="@+id/b2"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/b3"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_background"
+            android:text="O"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="-5dp"
+            android:gravity="top|center_horizontal"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/b4"
-        android:layout_width="58dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button4_container"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_margin="0dp"
-        android:background="@drawable/button_background"
-        android:paddingTop="-25dp"
-        android:paddingBottom="0dp"
-        android:text="F"
-        android:textColor="#D3D3D3"
-        android:textSize="34sp"
-        android:translationY="1dp"
-        android:translationX="-1dp"
-        app:layout_constraintStart_toEndOf="@+id/b3"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintWidth_percent="0.1"
+        app:layout_constraintStart_toEndOf="@+id/button3_container"
+        app:layout_constraintTop_toTopOf="parent">>
 
-    <Button
-        android:id="@+id/b5"
-        android:layout_width="58dp"
+        <Button
+            android:id="@+id/b4"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_background"
+            android:text="O"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="-5dp"
+            android:gravity="top|center_horizontal"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button5_container"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_margin="0dp"
-        android:background="@drawable/button_background"
-        android:paddingTop="-25dp"
-        android:paddingBottom="0dp"
-        android:text="I"
-        android:textColor="#D3D3D3"
-        android:textSize="34sp"
-        android:translationY="1dp"
-        android:translationX="-1dp"
-        app:layout_constraintStart_toEndOf="@+id/b4"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintWidth_percent="0.1"
+        app:layout_constraintStart_toEndOf="@+id/button4_container"
+        app:layout_constraintTop_toTopOf="parent">>
 
-    <Button
-        android:id="@+id/b6"
-        android:layout_width="58dp"
+        <Button
+            android:id="@+id/b5"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_background"
+            android:text="O"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="-5dp"
+            android:gravity="top|center_horizontal"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button6_container"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_margin="0dp"
-        android:background="@drawable/button_background"
-        android:paddingTop="-25dp"
-        android:paddingBottom="0dp"
-        android:text="G"
-        android:textColor="#D3D3D3"
-        android:textSize="34sp"
-        android:translationY="1dp"
-        android:translationX="-1dp"
-        app:layout_constraintStart_toEndOf="@+id/b5"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintWidth_percent="0.1"
+        app:layout_constraintStart_toEndOf="@+id/button5_container"
+        app:layout_constraintTop_toTopOf="parent">>
 
-    <Button
-        android:id="@+id/b7"
-        android:layout_width="58dp"
+        <Button
+            android:id="@+id/b6"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_background"
+            android:text="O"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="-5dp"
+            android:gravity="top|center_horizontal"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button7_container"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_margin="0dp"
-        android:background="@drawable/button_background"
-        android:paddingTop="-25dp"
-        android:paddingBottom="0dp"
-        android:text=" "
-        android:textColor="#D3D3D3"
-        android:textSize="34sp"
-        android:translationY="1dp"
-        android:translationX="-1dp"
-        app:layout_constraintStart_toEndOf="@+id/b6"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintWidth_percent="0.1"
+        app:layout_constraintStart_toEndOf="@+id/button6_container"
+        app:layout_constraintTop_toTopOf="parent">>
 
-    <Button
-        android:id="@+id/b8"
-        android:layout_width="58dp"
+        <Button
+            android:id="@+id/b7"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_background"
+            android:text="O"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="-5dp"
+            android:gravity="top|center_horizontal"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button8_container"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_margin="0dp"
-        android:background="@drawable/button_background"
-        android:paddingTop="-25dp"
-        android:paddingBottom="0dp"
-        android:text=" "
-        android:textColor="#D3D3D3"
-        android:textSize="34sp"
-        android:translationY="1dp"
-        android:translationX="-1dp"
-        app:layout_constraintStart_toEndOf="@+id/b7"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintWidth_percent="0.1"
+        app:layout_constraintStart_toEndOf="@+id/button7_container"
+        app:layout_constraintTop_toTopOf="parent">>
 
-    <Button
-        android:id="@+id/b9"
-        android:layout_width="58dp"
+        <Button
+            android:id="@+id/b8"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_background"
+            android:text="O"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="-5dp"
+            android:gravity="top|center_horizontal"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button9_container"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_margin="0dp"
-        android:paddingTop="-25dp"
-        android:paddingBottom="0dp"
-        android:text="M"
-        android:textColor="#D3D3D3"
-        android:textSize="34sp"
-        android:translationY="1dp"
-        android:translationX="-1dp"
-        android:background="@drawable/button_background"
-        app:layout_constraintStart_toEndOf="@+id/b8"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintWidth_percent="0.1"
+        app:layout_constraintStart_toEndOf="@+id/button8_container"
+        app:layout_constraintTop_toTopOf="parent">>
 
-    <Button
-        android:id="@+id/b10"
-        android:layout_width="58dp"
+        <Button
+            android:id="@+id/b9"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_background"
+            android:text="O"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="-5dp"
+            android:gravity="top|center_horizontal"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button10_container"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_margin="0dp"
-        android:background="@drawable/button_background"
-        android:paddingTop="-25dp"
-        android:paddingBottom="0dp"
-        android:text="E"
-        android:textColor="#D3D3D3"
-        android:textSize="34sp"
-        android:translationY="1dp"
-        android:translationX="-1dp"
-        app:layout_constraintStart_toEndOf="@+id/b9"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintWidth_percent="0.1"
+        app:layout_constraintStart_toEndOf="@+id/button9_container"
+        app:layout_constraintTop_toTopOf="parent">>
 
+        <Button
+            android:id="@+id/b10"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_background"
+            android:text="O"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="-5dp"
+            android:gravity="top|center_horizontal"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
