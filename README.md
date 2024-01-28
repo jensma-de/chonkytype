@@ -61,6 +61,7 @@ ToDo:
 - redo emoji submenu for faster popup (+categories/recently used?)
 - long press alt/shift/emoji for sticky?
 - fix 1px emoji submenu flicker
+- add more umlauts/languages
   
 <hr>
 Greatly learned from https://github.com/modularizer/HelloWorldKeyboard!<br>
