@@ -56,12 +56,14 @@ ToDo:
 - ~~flickering alt keyboard on holding alt when in sticky mode~~
 - ~~shift the letters up a bit for better readability~~
 - ~~responsive design for Titan slim~~
+- ~~add more umlauts/languages~~
 - add slider for vibration length/intensity
 - improve auto popup on physical input
 - redo emoji submenu for faster popup (+categories/recently used?)
 - long press alt/shift/emoji for sticky?
 - fix 1px emoji submenu flicker
-- ~~add more umlauts/languages~~
+- small 'dead' space above soft keyboard?
+
   
 <hr>
 Greatly learned from https://github.com/modularizer/HelloWorldKeyboard!<br>
