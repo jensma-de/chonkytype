@@ -1,0 +1,25 @@
+# Fastfile
+default_platform(:android)
+
+platform :android do
+  desc "Build the debug version of the app"
+  lane :build_debug do
+    gradle(task: "assembleDebug")
+  end
+
+  desc "Build the release version of the app"
+  lane :build_release do
+    gradle(task: "assembleRelease")
+  end
+
+  desc "Run unit tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new Beta Build to Play Store"
+  lane :beta do
+    gradle(task: "assembleRelease")
+    upload_to_play_store(track: 'beta')
+  end
+end
