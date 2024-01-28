@@ -23,7 +23,6 @@
   <li>10 fully customizable buttons for enhanced user experience</li>
   <li>ALT keyboard feature allowing for an alternative layout & sticky option</li>
   <li>Option to switch 'Y' and 'Z' keys on the physical keyboard</li>
-  <li>Option to automatically open chonkytype on physical input* </li>
   <li>Option to vibrate on physical input </li>
   <li>Integrated emoji submenu for quick access</li>
 </ul>
