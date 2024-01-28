@@ -10,6 +10,7 @@ import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
+import android.widget.SeekBar
 
 import android.widget.Toast
 import java.util.Locale
@@ -26,7 +27,36 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
+        val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
+        val vibrationLengthSeekBar = findViewById<SeekBar>(R.id.vibrationLengthSeekBar)
+
+
+
         val editText = findViewById<EditText>(R.id.editTextTextMultiLine3)
+
+
+        val currentVibrationLength = sharedPreferences.getInt("vibration_length", 28) // Standardwert ist 28
+        vibrationLengthSeekBar.progress = currentVibrationLength
+
+
+        vibrationLengthSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                with(sharedPreferences.edit()) {
+                    putInt("vibration_length", progress)
+                    apply()
+                }
+                notifyKeyboardService()
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                // Weird, why does the build fails
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                // when I omit this empty funs
+            }
+        })
+
 
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -44,6 +74,7 @@ class SettingsActivity : AppCompatActivity() {
             }
         })
 
+
         if (supportActionBar != null) {
             supportActionBar?.hide()
         }
@@ -55,7 +86,6 @@ class SettingsActivity : AppCompatActivity() {
 
 
 
-        val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
 
         val applyLayoutButton = findViewById<Button>(R.id.apply_layout_button)
         applyLayoutButton.setOnClickListener {
@@ -202,14 +232,14 @@ class SettingsActivity : AppCompatActivity() {
                 "...and everyone else on the unihertz Titan discord server!\n" +
                 "\n" +
                 "Thanks to modulizer for github.com/modularizer/HelloWorldKeyboard!\n\n" +
-                "v1.2 - github.com/chonkytype")
+                "v1.3 - github.com/chonkytype")
         builder.setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
         builder.show()
     }
     private fun showCharacterPickerDialog(buttonIndex: Int) {
         val characters = arrayOf(
             "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-            "ä", "ö", "ü", "ß",
+            "ä", "ö", "ü", "ß", "à", "è", "é", "ì", "ò", "ù", "â", "ê", "î", "ô", "û", "å", "ø", "æ", "œ", "ç", "ñ", "ã", "õ", "ł", "ś", "ź", "ć", "ę", "ą", "ø", "đ", "þ", "ð", "š", "ž", "ý", "í", "ě", "ř", "ů", "ğ", "ı", "ş", "ħ", "ż", "á", "ú", "¡", "¿", "ñ", "ç", "õ", "à", "ē", "ī", "ū", "ō", "ņ", "ķ", "ļ", "č", "ž", "ŗ", "ğ", "ş", "ė", "į", "ų", "ā", "ē", "ī", "ū", "ļ", "ņ", "č", "š", "ž", "ł", "ś", "ź", "ç", "ř", "ž", "ď", "ť", "ň", "â", "ê", "î", "ô", "û", "ä", "ë", "ï", "ö", "ü", "ÿ", "ā", "ē", "ī", "ō", "ū", "ă", "ĕ", "ĭ", "ŏ", "ŭ",
             "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
             "!", "?", "§", "$", "%", "&", "/", "(", ")", "=", "`", "´",
             "+", "*", "'", "^", "#", "<", ">", "|", ",", ";", ":", "_", "-", ".", "@", "€", "~", "{", "}", "[", "]", "\\", "\uD83D\uDE00",""
@@ -226,7 +256,7 @@ class SettingsActivity : AppCompatActivity() {
     private fun showAltCharacterPickerDialog(buttonIndex: Int) {
         val characters = arrayOf(
             "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-            "ä", "ö", "ü", "ß",
+            "ä", "ö", "ü", "ß", "à", "è", "é", "ì", "ò", "ù", "â", "ê", "î", "ô", "û", "å", "ø", "æ", "œ", "ç", "ñ", "ã", "õ", "ł", "ś", "ź", "ć", "ę", "ą", "ø", "đ", "þ", "ð", "š", "ž", "ý", "í", "ě", "ř", "ů", "ğ", "ı", "ş", "ħ", "ż", "á", "ú", "¡", "¿", "ñ", "ç", "õ", "à", "ē", "ī", "ū", "ō", "ņ", "ķ", "ļ", "č", "ž", "ŗ", "ğ", "ş", "ė", "į", "ų", "ā", "ē", "ī", "ū", "ļ", "ņ", "č", "š", "ž", "ł", "ś", "ź", "ç", "ř", "ž", "ď", "ť", "ň", "â", "ê", "î", "ô", "û", "ä", "ë", "ï", "ö", "ü", "ÿ", "ā", "ē", "ī", "ō", "ū", "ă", "ĕ", "ĭ", "ŏ", "ŭ",
             "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
             "!", "?", "§", "$", "%", "&", "/", "(", ")", "=", "`", "´",
             "+", "*", "'", "^", "#", "<", ">", "|", ",", ";", ":", "_", "-", ".", "@", "€", "~", "{", "}", "[", "]", "\\", "\uD83D\uDE00",""

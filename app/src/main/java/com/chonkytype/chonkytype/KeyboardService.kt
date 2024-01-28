@@ -512,11 +512,14 @@ class KeyboardService : InputMethodService() {
     }
 
     private fun vibrate() {
+        val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
+        val vibrationLength = sharedPreferences.getInt("vibration_length", 5)
+
         if (Build.VERSION.SDK_INT >= 26) {
-            vibrator.vibrate(VibrationEffect.createOneShot(28, VibrationEffect.DEFAULT_AMPLITUDE))
+            vibrator.vibrate(VibrationEffect.createOneShot(vibrationLength.toLong(), VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
             @Suppress("DEPRECATION")
-            vibrator.vibrate(28)
+            vibrator.vibrate(vibrationLength.toLong())
         }
     }
 }
