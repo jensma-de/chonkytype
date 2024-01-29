@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="0dp"
     android:layout_margin="0dp"
-    android:translationY="5dp">
+    android:translationY="0dp"
+    android:background="#000000">
 
+    <!-- Weiße Linie über der Tastatur -->
     <View
-        android:id="@+id/separator"
-        android:layout_width="0dp"
-        android:layout_height="5dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:id="@+id/white_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#999"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- ScrollView für Emoji-Auswahl -->
     <ScrollView
         android:id="@+id/emoji_scroll_view"
         android:layout_width="1000dp"
@@ -26,17 +26,17 @@
         android:scrollbars="vertical"
         android:visibility="gone"
         android:background="#333333"
-
-        >
+        app:layout_constraintTop_toBottomOf="@id/white_line">
 
         <LinearLayout
             android:id="@+id/emoji_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <!-- emojis are added by activity -->
+            <!-- Emojis werden durch die Activity hinzugefügt -->
         </LinearLayout>
     </ScrollView>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/button1_container"
@@ -44,10 +44,11 @@
         android:layout_height="50dp"
         app:layout_constraintWidth_percent="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/white_line">
 
         <Button
             android:id="@+id/b1"
+            android:translationY="2dp"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button_background"
@@ -75,10 +76,11 @@
         android:layout_height="50dp"
         app:layout_constraintWidth_percent="0.1"
         app:layout_constraintStart_toEndOf="@+id/button1_container"
-        app:layout_constraintTop_toTopOf="parent">>
+        app:layout_constraintTop_toBottomOf="@id/white_line">
 
         <Button
             android:id="@+id/b2"
+            android:translationY="3dp"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button_background"
@@ -102,10 +104,11 @@
         android:layout_height="50dp"
         app:layout_constraintWidth_percent="0.1"
         app:layout_constraintStart_toEndOf="@+id/button2_container"
-        app:layout_constraintTop_toTopOf="parent">>
+        app:layout_constraintTop_toBottomOf="@id/white_line">
 
         <Button
             android:id="@+id/b3"
+            android:translationY="1dp"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button_background"
@@ -129,10 +132,11 @@
         android:layout_height="50dp"
         app:layout_constraintWidth_percent="0.1"
         app:layout_constraintStart_toEndOf="@+id/button3_container"
-        app:layout_constraintTop_toTopOf="parent">>
+        app:layout_constraintTop_toBottomOf="@id/white_line">
 
         <Button
             android:id="@+id/b4"
+            android:translationY="1dp"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button_background"
@@ -156,10 +160,11 @@
         android:layout_height="50dp"
         app:layout_constraintWidth_percent="0.1"
         app:layout_constraintStart_toEndOf="@+id/button4_container"
-        app:layout_constraintTop_toTopOf="parent">>
+        app:layout_constraintTop_toBottomOf="@id/white_line">
 
         <Button
             android:id="@+id/b5"
+            android:translationY="1dp"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button_background"
@@ -183,10 +188,11 @@
         android:layout_height="50dp"
         app:layout_constraintWidth_percent="0.1"
         app:layout_constraintStart_toEndOf="@+id/button5_container"
-        app:layout_constraintTop_toTopOf="parent">>
+        app:layout_constraintTop_toBottomOf="@id/white_line">
 
         <Button
             android:id="@+id/b6"
+            android:translationY="1dp"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button_background"
@@ -210,10 +216,11 @@
         android:layout_height="50dp"
         app:layout_constraintWidth_percent="0.1"
         app:layout_constraintStart_toEndOf="@+id/button6_container"
-        app:layout_constraintTop_toTopOf="parent">>
+        app:layout_constraintTop_toBottomOf="@id/white_line">
 
         <Button
             android:id="@+id/b7"
+            android:translationY="1dp"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button_background"
@@ -237,10 +244,11 @@
         android:layout_height="50dp"
         app:layout_constraintWidth_percent="0.1"
         app:layout_constraintStart_toEndOf="@+id/button7_container"
-        app:layout_constraintTop_toTopOf="parent">>
+        app:layout_constraintTop_toBottomOf="@id/white_line">
 
         <Button
             android:id="@+id/b8"
+            android:translationY="1dp"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button_background"
@@ -264,10 +272,11 @@
         android:layout_height="50dp"
         app:layout_constraintWidth_percent="0.1"
         app:layout_constraintStart_toEndOf="@+id/button8_container"
-        app:layout_constraintTop_toTopOf="parent">>
+        app:layout_constraintTop_toBottomOf="@id/white_line">
 
         <Button
             android:id="@+id/b9"
+            android:translationY="1dp"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button_background"
@@ -291,10 +300,11 @@
         android:layout_height="50dp"
         app:layout_constraintWidth_percent="0.1"
         app:layout_constraintStart_toEndOf="@+id/button9_container"
-        app:layout_constraintTop_toTopOf="parent">>
+        app:layout_constraintTop_toBottomOf="@id/white_line">
 
-        <Button
+    <Button
             android:id="@+id/b10"
+            android:translationY="1dp"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button_background"

@@ -56,25 +56,25 @@
         android:textColor="#ffffff"
         android:paddingLeft="10dp"
         />
+    <!--
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/stickyalt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sticky ALT  "
+            android:textColor="#ffffff"
+            android:paddingLeft="10dp"
+            />
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/stickyalt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sticky ALT  "
-        android:textColor="#ffffff"
-        android:paddingLeft="10dp"
-        />
-<!--
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/autopopup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Open chonkytype on physical input "
-        android:textColor="#ffffff"
-        android:paddingLeft="10dp"
-        />
--->
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/autopopup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open chonkytype on physical input "
+            android:textColor="#ffffff"
+            android:paddingLeft="10dp"
+            />
+    -->
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -33,8 +33,14 @@ class KeyboardService : InputMethodService() {
     private var isAltPressed = false
     private var isEmojiMenuOpen = false
     private var isKeyBeingPressed = false
-    private var isStickyAltActive = false
+    //private var isStickyAltActive = false
     private var isstickyaltenabled = false
+
+    private var lastAltPressTime: Long = 0
+    private val doubleClickInterval: Long = 300 // time for double click sticky alt menu
+    private var altTogglePermanent = false
+    private var altKeyPressed = false
+
     /*
     private val updateReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -60,6 +66,12 @@ class KeyboardService : InputMethodService() {
         if (isEmojiMenuOpen) {
             toggleEmojiMenu()
         }
+
+
+        altTogglePermanent = false
+        toggleAltKeyboard(false)
+        isAltPressed = false
+        altKeyPressed = false
 
         inputView.requestFocus()
     }
@@ -150,29 +162,6 @@ class KeyboardService : InputMethodService() {
         }
     }
 
-
-    override fun onKeyUp(keyCode: Int, event: KeyEvent): Boolean {
-
-        isKeyBeingPressed = false
-
-        if ((keyCode == KeyEvent.KEYCODE_ALT_RIGHT) && !stickyaltenabled()) {
-            isAltPressed = false
-            if (isAltKeyboardEnabled) {
-                toggleAltKeyboard(false)
-            }
-            return true
-        }
-
-        if (keyCode == KeyEvent.KEYCODE_SHIFT_LEFT) {
-            isShiftPressed = false
-            updateKeyLabels()
-            return true
-        }
-        return super.onKeyUp(keyCode, event)
-    }
-
-
-
     private fun toggleAltKeyboard(showAlt: Boolean) {
 
         val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
@@ -191,6 +180,34 @@ class KeyboardService : InputMethodService() {
         }
     }
 
+    override fun onKeyUp(keyCode: Int, event: KeyEvent): Boolean {
+
+        isKeyBeingPressed = false
+
+        if (keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
+            altKeyPressed = false
+            if (!altTogglePermanent) {
+                // Alt-Tastatur ausblenden, wenn sie temporär eingeblendet wurde
+                toggleAltKeyboard(false)
+            }
+            return true
+        }
+
+        if (keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
+            if (!altTogglePermanent) {
+                toggleAltKeyboard(false) // Alt-Tastatur ausblenden
+            }
+            return true
+        }
+
+        if (keyCode == KeyEvent.KEYCODE_SHIFT_LEFT) {
+            isShiftPressed = false
+            updateKeyLabels()
+            return true
+        }
+        return super.onKeyUp(keyCode, event)
+    }
+
 
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
@@ -205,30 +222,26 @@ class KeyboardService : InputMethodService() {
                 isKeyBeingPressed = true
             }
         }
-/*
-        if (!isKeyBeingPressed && event.deviceId != KeyCharacterMap.VIRTUAL_KEYBOARD) {
-            if (shouldVibrateOnPhysicalInput()) {
-                vibrate()
-                isKeyBeingPressed = true
-            }
-        }
-*/
 
-        if ((keyCode == KeyEvent.KEYCODE_ALT_RIGHT) && stickyaltenabled()) {
-            isAltPressed = !isAltPressed
-            if (isAltPressed) {
-                toggleAltKeyboard(true)
-            } else {
-                toggleAltKeyboard(false)
-            }
-            return true
-        } else if (keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
-            isAltPressed = true
-            if (isAltKeyboardEnabled) {
-                toggleAltKeyboard(true)
+        if (keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
+            if (!altKeyPressed) {
+                altKeyPressed = true
+                val currentTime = System.currentTimeMillis()
+                if (currentTime - lastAltPressTime < doubleClickInterval) {
+                    // Doppelklick erkannt, Alt-Tastatur dauerhaft umschalten
+                    altTogglePermanent = !altTogglePermanent
+                    toggleAltKeyboard(altTogglePermanent)
+                } else {
+                    // Kein Doppelklick, Alt-Tastatur temporär einblenden
+                    if (!altTogglePermanent) {
+                        toggleAltKeyboard(true)
+                    }
+                }
+                lastAltPressTime = currentTime
             }
             return true
         }
+
 
 
         isShiftPressed = event.isShiftPressed

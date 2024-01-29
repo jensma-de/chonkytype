@@ -104,7 +104,7 @@ class SettingsActivity : AppCompatActivity() {
             }
             notifyKeyboardService()
         }
-*/
+
         val stickyAltSwitch = findViewById<SwitchCompat>(R.id.stickyalt)
         stickyAltSwitch.isChecked = sharedPreferences.getBoolean("stickyalt", false)
         stickyAltSwitch.setOnCheckedChangeListener { _, isChecked ->
@@ -114,7 +114,7 @@ class SettingsActivity : AppCompatActivity() {
             }
             notifyKeyboardService()
         }
-
+*/
         val vibrateSwitch = findViewById<SwitchCompat>(R.id.vibrate)
         vibrateSwitch.isChecked = sharedPreferences.getBoolean("vibrate", true)
         vibrateSwitch.setOnCheckedChangeListener { _, isChecked ->
