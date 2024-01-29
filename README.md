@@ -64,7 +64,7 @@ ToDo:
 - small 'dead' space above soft keyboard?
 
 Searching for an alternative? Give this one a try!
-<a href="https://github.com/runoono/titanSoftKeyboard>titanSoftKeyboard</a>
+<a href="https://github.com/runoono/titanSoftKeyboard">titanSoftKeyboard</a>
 
 https://github.com/runoono/titanSoftKeyboard
 <hr>
