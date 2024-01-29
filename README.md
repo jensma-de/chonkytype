@@ -23,7 +23,6 @@
   <li>10 fully customizable buttons for enhanced user experience</li>
   <li>ALT keyboard feature allowing for an alternative layout & sticky option</li>
   <li>Option to switch 'Y' and 'Z' keys on the physical keyboard</li>
-  <li>Option to automatically open chonkytype on physical input* </li>
   <li>Option to vibrate on physical input </li>
   <li>Integrated emoji submenu for quick access</li>
 </ul>
@@ -53,7 +52,7 @@ The latest release is availabe here: <a href="https://github.com/jensma-de/chonk
 </p>
 
 ToDo:
-- ~~flickering alt keyboard on holding alt when in sticky mode~~
+- flickering alt keyboard on holding alt when in sticky mode
 - ~~shift the letters up a bit for better readability~~
 - ~~responsive design for Titan slim~~
 - ~~add more umlauts/languages~~
@@ -64,7 +63,10 @@ ToDo:
 - fix 1px emoji submenu flicker
 - small 'dead' space above soft keyboard?
 
-  
+Searching for an alternative? Give this one a try!
+<a href="https://github.com/runoono/titanSoftKeyboard">titanSoftKeyboard</a>
+
+
 <hr>
 Greatly learned from https://github.com/modularizer/HelloWorldKeyboard!<br>
 Join us on https://discord.gg/h7XwqeKb :)
