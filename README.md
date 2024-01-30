@@ -52,7 +52,7 @@ The latest release is availabe here: <a href="https://github.com/jensma-de/chonk
 </p>
 
 ToDo:
-- flickering alt keyboard on holding alt when in sticky mode
+- ~~flickering alt keyboard on holding alt when in sticky mode~~
 - ~~shift the letters up a bit for better readability~~
 - ~~responsive design for Titan slim~~
 - ~~add more umlauts/languages~~
