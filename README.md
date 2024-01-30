@@ -21,7 +21,7 @@
 <h2>Features</h2>
 <ul>
   <li>10 fully customizable buttons for enhanced user experience</li>
-  <li>ALT keyboard feature allowing for an alternative layout & sticky option</li>
+  <li>ALT keyboard feature allowing for an alternative layout & sticky option (applied by double tapping alt-key)</li>
   <li>Option to switch 'Y' and 'Z' keys on the physical keyboard</li>
   <li>Option to vibrate on physical input </li>
   <li>Integrated emoji submenu for quick access</li>
@@ -56,12 +56,12 @@ ToDo:
 - ~~shift the letters up a bit for better readability~~
 - ~~responsive design for Titan slim~~
 - ~~add more umlauts/languages~~
-- add slider for vibration length/intensity
+- ~~add slider for vibration length/intensity~~
 - improve auto popup on physical input
 - redo emoji submenu for faster popup (+categories/recently used?)
-- long press alt/shift/emoji for sticky?
-- fix 1px emoji submenu flicker
-- small 'dead' space above soft keyboard?
+- ~~long press alt/shift/emoji for sticky?~~
+- ~~fix 1px emoji submenu flicker~~
+- ~~small 'dead' space above soft keyboard?~~
 
 Searching for an alternative? Give this one a try!
 <a href="https://github.com/runoono/titanSoftKeyboard">titanSoftKeyboard</a>
