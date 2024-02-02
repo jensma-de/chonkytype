@@ -1,0 +1,1 @@
+chonkytype is a user-friendly yet customizable keyboard, designed specifically for the Unihertz Titan/Slim/Pocket. Features include 10 fully customizable buttons, ALT keyboard feature, option to switch "Y" and "Z" keys, vibration on physical input, and an integrated emoji submenu.
