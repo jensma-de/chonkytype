@@ -52,16 +52,7 @@ The latest release is availabe here: <a href="https://github.com/jensma-de/chonk
 </p>
 
 ToDo:
-- ~~flickering alt keyboard on holding alt when in sticky mode~~
-- ~~shift the letters up a bit for better readability~~
-- ~~responsive design for Titan slim~~
-- ~~add more umlauts/languages~~
-- ~~add slider for vibration length/intensity~~
-- improve auto popup on physical input
-- redo emoji submenu for faster popup (+categories/recently used?)
-- ~~long press alt/shift/emoji for sticky?~~
-- ~~fix 1px emoji submenu flicker~~
-- ~~small 'dead' space above soft keyboard?~~
+- You tell me =)
 
 Searching for an alternative? Give this one a try!
 <a href="https://github.com/runoono/titanSoftKeyboard">titanSoftKeyboard</a>
