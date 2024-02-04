@@ -232,7 +232,7 @@ class SettingsActivity : AppCompatActivity() {
                 "...and everyone else on the unihertz Titan discord server!\n" +
                 "\n" +
                 "Thanks to modulizer for github.com/modularizer/HelloWorldKeyboard!\n\n" +
-                "v1.31 - github.com/chonkytype")
+                "v1.4 - github.com/chonkytype")
         builder.setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
         builder.show()
     }

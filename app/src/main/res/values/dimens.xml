@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="emoji_scroll_view_padding_top">50dp</dimen>
+
+
+
+<dimen name="divider_height">2dp</dimen>
+<dimen name="divider_margin_vertical">2dp</dimen>
+</resources>

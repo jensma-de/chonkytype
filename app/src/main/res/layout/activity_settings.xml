@@ -1,504 +1,511 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/linearLayout"
-    android:padding="0dp"
-    android:layout_margin="0dp"
-    android:translationY="5dp"
-    android:background="@drawable/background_tiled"
-    android:textColor="#ffffff"
-    >
-
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch_swap_keys"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Swap Z and Y keys of physical keyboard "
-        android:textColor="#ffffff"
-        android:paddingLeft="10dp"/>
-
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/vibrate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vibrate on soft input "
-        android:textColor="#ffffff"
-        android:paddingLeft="10dp"
-        />
-
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/physivibrate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vibrate on physical input "
-        android:textColor="#ffffff"
-        android:paddingLeft="10dp"
-        />
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/altkeyboard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enable ALT keyboard "
-        android:textColor="#ffffff"
-        android:paddingLeft="10dp"
-        />
-    <!--
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/stickyalt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sticky ALT  "
-            android:textColor="#ffffff"
-            android:paddingLeft="10dp"
-            />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/autopopup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Open chonkytype on physical input "
-            android:textColor="#ffffff"
-            android:paddingLeft="10dp"
-            />
-    -->
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <!-- Dein ursprüngliches LinearLayout ohne den Info-Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="0dp"
+            android:layout_margin="0dp"
+            android:translationY="5dp"
+            android:background="@drawable/background_tiled"
+            android:textColor="#ffffff">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_swap_keys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Swap Z and Y keys of physical keyboard "
+            android:textColor="#ffffff"
+            android:paddingLeft="10dp"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/vibrate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vibrate on soft input "
+            android:textColor="#ffffff"
+            android:paddingLeft="10dp"
+            />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/physivibrate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vibrate on physical input "
+            android:textColor="#ffffff"
+            android:paddingLeft="10dp"
+            />
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/altkeyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enable ALT keyboard "
+            android:textColor="#ffffff"
+            android:paddingLeft="10dp"
+            />
+        <!--
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/stickyalt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sticky ALT  "
+                android:textColor="#ffffff"
+                android:paddingLeft="10dp"
+                />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/autopopup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Open chonkytype on physical input "
+                android:textColor="#ffffff"
+                android:paddingLeft="10dp"
+                />
+        -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/vibrationLengthLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vibration strength:"
+                android:textColor="#ffffff"
+                android:layout_gravity="center_vertical"/>
+
+            <SeekBar
+                android:id="@+id/vibrationLengthSeekBar"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:max="150"
+                android:min="5"
+                android:progress="28"
+                android:thumb="@drawable/custom_thumb"/>
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            />
 
         <TextView
-            android:id="@+id/vibrationLengthLabel"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vibration strength:"
-            android:textColor="#ffffff"
-            android:layout_gravity="center_vertical"/>
+            android:text="Standard keyboard"
+            android:textAlignment="center"
+            android:textColor="#aaa"
+            android:textSize="10sp" />
 
-        <SeekBar
-            android:id="@+id/vibrationLengthSeekBar"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:max="150"
-            android:min="5"
-            android:progress="28"
-            android:thumb="@drawable/custom_thumb"/>
-    </LinearLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Standard keyboard"
-        android:textAlignment="center"
-        android:textColor="#aaa"
-        android:textSize="10sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/button1"
-            android:padding="0dp"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp" />
-        <Button
-            android:id="@+id/button2"
-            android:padding="0dp"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp" />
-        <Button
-            android:id="@+id/button3"
-            android:padding="0dp"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp" />
-        <Button
-            android:id="@+id/button4"
-            android:padding="0dp"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp" />
-        <Button
-            android:id="@+id/button5"
-            android:padding="0dp"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp" />
-        <Button
-            android:id="@+id/button6"
-            android:padding="0dp"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp" />
-        <Button
-            android:id="@+id/button7"
-            android:padding="0dp"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp" />
-        <Button
-            android:id="@+id/button8"
-            android:padding="0dp"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp" />
-        <Button
-            android:id="@+id/button9"
-            android:padding="0dp"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp" />
-        <Button
-            android:id="@+id/button10"
-            android:padding="0dp"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp" />
-        <!-- Weitere Buttons (button3 bis button10) mit ähnlichen Einstellungen -->
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ALT keyboard"
-        android:textAlignment="center"
-        android:textColor="#aaa"
-        android:textSize="10sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-
-        <!-- Buttons -->
-        <Button
-            android:id="@+id/button11"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:padding="0dp"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp"
-            />
-
-        <Button
-            android:id="@+id/button12"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:padding="0dp"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp"
-            />
-
-        <Button
-            android:id="@+id/button13"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:padding="0dp"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp"
-            />
-
-        <Button
-            android:id="@+id/button14"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:padding="0dp"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp"
-            />
-
-        <Button
-            android:id="@+id/button15"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:padding="0dp"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp"
-            />
-
-        <Button
-            android:id="@+id/button16"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:padding="0dp"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp"
-            />
-
-        <Button
-            android:id="@+id/button17"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:padding="0dp"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp"
-            />
-
-        <Button
-            android:id="@+id/button18"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:padding="0dp"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp"
-            />
-
-        <Button
-            android:id="@+id/button19"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:padding="0dp"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp"
-            />
-
-        <Button
-            android:id="@+id/button20"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textColor="#D3D3D3"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:padding="0dp"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="12sp"
-            android:autoSizeMaxTextSize="34sp"
-            android:autoSizeStepGranularity="2sp"
-            />
-
-
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="1dp">
-
-        <Button
-            android:id="@+id/apply_layout_button"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Apply layout" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:gravity="center">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        />
+            <Button
+                android:id="@+id/button1"
+                android:padding="0dp"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp" />
+            <Button
+                android:id="@+id/button2"
+                android:padding="0dp"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp" />
+            <Button
+                android:id="@+id/button3"
+                android:padding="0dp"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp" />
+            <Button
+                android:id="@+id/button4"
+                android:padding="0dp"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp" />
+            <Button
+                android:id="@+id/button5"
+                android:padding="0dp"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp" />
+            <Button
+                android:id="@+id/button6"
+                android:padding="0dp"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp" />
+            <Button
+                android:id="@+id/button7"
+                android:padding="0dp"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp" />
+            <Button
+                android:id="@+id/button8"
+                android:padding="0dp"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp" />
+            <Button
+                android:id="@+id/button9"
+                android:padding="0dp"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp" />
+            <Button
+                android:id="@+id/button10"
+                android:padding="0dp"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp" />
+            <!-- Weitere Buttons (button3 bis button10) mit ähnlichen Einstellungen -->
 
-    <EditText
-        android:id="@+id/editTextTextMultiLine3"
-        style="@style/Widget.AppCompat.AutoCompleteTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Test here!"
-        android:inputType="textMultiLine"
-        android:singleLine="true"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#ffffff" />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="1dp">
-
-        <Button
-            android:id="@+id/help_layout_button"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Info" />
-    </LinearLayout>
+            android:text="ALT keyboard"
+            android:textAlignment="center"
+            android:textColor="#aaa"
+            android:textSize="10sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
 
 
-</LinearLayout>
-</ScrollView>
+            <!-- Buttons -->
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:padding="0dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp"
+                />
+
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:padding="0dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp"
+                />
+
+            <Button
+                android:id="@+id/button13"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:padding="0dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp"
+                />
+
+            <Button
+                android:id="@+id/button14"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:padding="0dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp"
+                />
+
+            <Button
+                android:id="@+id/button15"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:padding="0dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp"
+                />
+
+            <Button
+                android:id="@+id/button16"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:padding="0dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp"
+                />
+
+            <Button
+                android:id="@+id/button17"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:padding="0dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp"
+                />
+
+            <Button
+                android:id="@+id/button18"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:padding="0dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp"
+                />
+
+            <Button
+                android:id="@+id/button19"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:padding="0dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp"
+                />
+
+            <Button
+                android:id="@+id/button20"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="#D3D3D3"
+                android:textAllCaps="false"
+                android:background="@drawable/button_background"
+                android:padding="0dp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="34sp"
+                android:autoSizeStepGranularity="2sp"
+                />
+
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="1dp">
+
+            <Button
+                android:id="@+id/apply_layout_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apply layout" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            />
+
+        <EditText
+            android:id="@+id/editTextTextMultiLine3"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Test here!"
+            android:inputType="textMultiLine"
+            android:singleLine="true"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#ffffff" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="1dp">
+
+
+        </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Info-Button oben rechts positioniert -->
+    <Button
+        android:id="@+id/help_layout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Info" />
+
+</RelativeLayout>

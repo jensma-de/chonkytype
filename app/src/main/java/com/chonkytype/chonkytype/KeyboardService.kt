@@ -10,6 +10,7 @@ import android.inputmethodservice.InputMethodService
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Log
 import android.view.KeyCharacterMap
 import android.view.KeyEvent
 import android.view.View
@@ -18,6 +19,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
+import android.widget.Toast
 import java.util.Locale
 
 
@@ -33,30 +35,122 @@ class KeyboardService : InputMethodService() {
     private var isAltPressed = false
     private var isEmojiMenuOpen = false
     private var isKeyBeingPressed = false
-    //private var isStickyAltActive = false
+
     private var isstickyaltenabled = false
 
     private var lastAltPressTime: Long = 0
     private val doubleClickInterval: Long = 300 // time for double click sticky alt menu
     private var altTogglePermanent = false
     private var altKeyPressed = false
+    private val categoryLinePositions = mutableMapOf<Int, Int>()
 
-    /*
-    private val updateReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            updateKeyboardLayout()
-        }
-    }
-   */
+    private val emoji_I = arrayOf(
+        "😀", "😃", "😄", "😁", "😆", "😅", "🤣", "😂", "🙂", "🙃",
+         "🫠", "😉",  "😊", "😇", "🥰", "😍", "🤩", "😘", "😗", "😊",
+        "😚", "😙", "🥲", "😋", "😛", "😜", "🤪", "😝", "🤑", "🤗", "🤭", "🫢", "🫣", "🤫", "🤔", "🫡", "🤐",
+        "🤨", "😐", "😑", "😶", "🫥", "😶‍🌫️", "😏", "😒", "🙄", "😬", "😮‍💨", "🤥", "🫨",
+        "😌", "😔", "😪", "🤤", "😴", "😷", "🤒", "🤕", "🤢", "🤮", "🤧", "🥵", "🥶",
+        "🥴", "😵", "😵‍💫", "🤯", "🤠", "🥳", "🥸", "😎", "🤓", "🧐", "😕", "🫤", "😟",
+        "🙁", "☹️", "😮", "😯", "😲", "😳", "🥺", "🥹", "😦", "😧", "😨", "😰", "😥",
+        "😢", "😭", "😱", "😖", "😣", "😞", "😓", "😩", "😫", "🥱", "😤", "😡", "😠",
+        "🤬", "😈", "👿", "💀", "☠️", "💩", "🤡")
+
+    private val emoji_II = arrayOf(
+        "😸", "😺","😹", "😻", "😼", "😽", "🙀", "😿", "😾", "🙈", "🙉", "🙊",
+        "💩","💀", "☠️", "👹", "👺", "👻", "👽", "👾", "🤖",
+        "👋", "🤚", "🖐️", "✋", "🖖", "🫱", "🫲", "🫳", "🫴", "🫷", "🫸",
+        "👌", "🤌", "🤏", "✌️", "🤞", "🫰", "🤟", "🤘", "🤙", "👈", "👉", "👆",
+        "🖕", "👇", "☝️", "🫵", "👍", "👎", "✊", "👊", "🤛", "🤜", "👏", "🙌", "🫶",
+        "👐", "🤲", "🤝", "🙏", "✍️", "💪", "🦶", "👂",
+        "👃", "🧠", "🫀", "🫁", "🦷", "🦴", "👀", "👁️", "👅")
+
+    private val emoji_III = arrayOf(
+        "💖", "💗", "💓", "💔", "❤️‍🔥", "❤️‍🩹", "❤️", "🩷",
+        "🧡", "💛", "💚", "💙", "🩵", "💜", "🤎", "🖤", "🩶",  "🤍",
+        "💋", "💯", "💢", "💥", "💦", "💨", "💬",
+        "💤")
+
+    private val emoji_IV = arrayOf(
+        "🐵", "🐶", "🐕", "🐺", "🦊", "🦝", "🐱",
+        "🦁", "🐴", "🦄", "🦓",
+        "🐃", "🐄", "🐷", "🐗", "🐏", "🐑", "🐐", "🐪", "🦙", "🦒", "🐘",
+        "🦣", "🦏", "🐭", "🐹", "🐰", "🐿️", "🦫", "🦔", "🦇", "🐻",
+        "🐻‍❄️", "🐨", "🐼","🦨", "🦘", "🦡", "🐾", "🦃", "🐔", "🐣",
+        "🕊️", "🦅", "🦆", "🦢", "🦉", "🦩", "🦜",
+        "🐸", "🐊", "🐢", "🐍", "🐲", "🦕", "🐳", "🐬", "🐟",
+        "🦈", "🐙", "🐌", "🦋", "🐛", "🐜", "🐝", "🪲", "🐞",
+        "🦗", "🪳", "🕷️", "🕸️", "🌸", "🌹",
+        "🥀", "🌼", "🌷", "🌲", "🌴", "🌵", "☘️",
+        "🍀")
+
+    private val emoji_V = arrayOf(
+        "🍄", "🍇", "🍉", "🍊", "🍋", "🍌", "🍍", "🥭", "🍎", "🍐", "🍑", "🍒",
+        "🍓", "🫐", "🥝", "🍅", "🫒", "🥥", "🥑", "🍆", "🥔", "🥕", "🌽", "🌶️", "🫑",
+        "🥦", "🧄", "🧅", "🫘","🫛", "🍞", "🥐", "🫓", "🥨",
+        "🥞", "🧇", "🧀", "🍖", "🍗", "🥩", "🥓", "🍔", "🍟", "🍕", "🌭", "🥪", "🌮", "🌯",
+        "🫔", "🥚", "🫕", "🥣", "🧂", "🍙", "🍜", "🍝", "🍣", "🍤",
+        "🦞", "🦐", "🍦", "🍩", "🍪", "🍰", "🧁", "🍫", "🍭", "🥛", "☕", "🫖",
+        "🍾", "🍷", "🍸", "🍹", "🍺","🥂", "🥃",
+        "🧊","🍽️", "🍴", "🥄", "🔪")
+
+    private val emoji_VI = arrayOf(
+        "🌍", "🗺️", "🗻", "🏕️", "🏖️", "🏜️",
+        "🏝️", "🏤", "🏩", "🏪", "🏫", "🏰", "💒",
+        "⛪", "🕌", "🛕", "🕍", "🕋", "⛺", "🌃", "🏙️",
+        "♨️", "🎠", "🛝", "🎡", "🎢", "🎪", "🚅", "🚆",
+        "🚐", "🚑", "🚒", "🚓","🚔", "🚕", "🚗","🦽",
+        "🚲", "⛽", "🛞", "🚨", "🚦", "⚓", "🚢", "✈️",
+        "🛰️", "🚀", "🛸","🌙", "🌚",
+        "🌡️", "🪐", "⭐", "🌌", "☁️", "⛅", "⛈️", "🌤️", "🌥️",
+        "🌦️", "🌧️", "🌨️", "🌩️", "🌪️", "🌫️", "🌬️", "🌀", "🌈", "☂️", "⛱️", "⚡",
+        "❄️", "⛄", "🔥", "💧", "🌊")
+
+    private val emoji_VII = arrayOf(
+        "🎃", "🎄", "🎈", "🎉", "🎊",
+        "🎀", "🎁", "🎗️", "🎟️", "🎫", "🎖️", "🏆","⚽",
+        "⚾", "🏀", "🏐", "🏈", "🎳",
+        "🏓", "🥊", "🥋", "🥅", "⛳", "🎣",
+        "🎯", "🪀", "🪁", "🎱", "🔮", "🪄", "🎮", "🎲",
+        "🧸", "🪅", "🪩", "🪆", "♠️", "♥️", "♦️", "♣️", "♟️",
+        "🎨", "🕶️", "🦺", "👔",
+        "🧦", "👗", "🩱", "👛",
+        "🪮", "👑", "👒", "🎩", "🎓", "🪖", "💄", "💍",
+        "💎", "🎵", "🎤", "🎧",  "🎹", "🎺", "🎻",
+        "📱", "📞", "💾", "💿",
+        "📸", "📼", "🔎", "💡",
+        "📃", "💰", "🪙", "💳",
+        "💹", "✉️", "📤", "📥", "📦", "📭",
+        "📮", "✏️", "🖊️", "📝", "📁",
+        "📅", "🗒️", "📇", "📈", "📍", "📎", "📏",
+        "✂️", "🗑️", "🔒", "🔓", "🗝️", "🔨", "🪓",
+        "⛏️", "⚔️", "🪃", "🏹", "🪚", "🔧", "🪛","⚙️",
+        "🧲")
+    val emoji_VIII = arrayOf(
+        "🏧", "🚮", "🚰", "♿", "🚹", "🚺", "🚻", "🚾",
+        "⚠️", "🚸", "⛔", "🚫", "🚳", "🚭", "🚯", "🚱", "🚷", "📵", "🔞", "☢️", "☣️",
+        "🔆", "📶", "🛜", "♀️", "♂️", "⚧️", "✖️", "➕",
+        "➖", "➗", "🟰", "‼️", "⁉️", "❓", "❗", "〰️", "💲", "⚕️",
+        "♻️", "⭕", "✅", "☑️", "✔️", "❌", "❎", "〽️",  "©️", "®️", "™️")
+
+
+    val emoji_IX = arrayOf(
+        "🇦🇷", "🇦🇺", "🇧🇪", "🇧🇷", "🇨🇦", "🇨🇳", "🇩🇰", "🇪🇬", "🇫🇷", "🇩🇪", "🇬🇷", "🇮🇳", "🇮🇩",
+        "🇮🇷", "🇮🇪", "🇮🇱", "🇮🇹", "🇯🇵", "🇰🇷", "🇲🇽", "🇳🇱", "🇳🇬", "🇳🇴", "🇵🇰", "🇵🇱", "🇵🇹",
+        "🇷🇺", "🇸🇦", "🇸🇬", "🇿🇦", "🇪🇸", "🇸🇪", "🇨🇭", "🇹🇼", "🇹🇭", "🇹🇷", "🇦🇪", "🇬🇧", "🇺🇸", "🇻🇳","\uD83C\uDFF3\uFE0F","\uD83C\uDFC1","\uD83C\uDFF4","\uD83C\uDFF4\u200D☠\uFE0F","\uD83C\uDFF3\uFE0F\u200D⚧\uFE0F"
+    )
+
 
     private fun toggleEmojiMenu() {
         val emojiScrollView = inputView.findViewById<ScrollView>(R.id.emoji_scroll_view)
+
         if (emojiScrollView.visibility == View.GONE) {
+
             emojiScrollView.visibility = View.VISIBLE
             isEmojiMenuOpen = true
-        } else {
+                } else {
             emojiScrollView.visibility = View.GONE
             isEmojiMenuOpen = false
+
         }
     }
 
@@ -66,7 +160,6 @@ class KeyboardService : InputMethodService() {
         if (isEmojiMenuOpen) {
             toggleEmojiMenu()
         }
-
 
         altTogglePermanent = false
         toggleAltKeyboard(false)
@@ -81,6 +174,13 @@ class KeyboardService : InputMethodService() {
         inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
     }
 
+    override fun onCreate() {
+        super.onCreate()
+        vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        registerReceiver(settingsUpdateReceiver, IntentFilter("com.chonkytype.chonkytype.ACTION_UPDATE_KEYBOARD"))
+        loadSettings()
+    }
+
     private val settingsUpdateReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.action == "com.chonkytype.chonkytype.ACTION_UPDATE_KEYBOARD") {
@@ -89,13 +189,6 @@ class KeyboardService : InputMethodService() {
                 updateKeyLabels()
             }
         }
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        registerReceiver(settingsUpdateReceiver, IntentFilter("com.chonkytype.chonkytype.ACTION_UPDATE_KEYBOARD"))
-        loadSettings()
     }
 
     private fun loadSettings() {
@@ -113,12 +206,6 @@ class KeyboardService : InputMethodService() {
         unregisterReceiver(settingsUpdateReceiver)
     }
 
-/* always enabled
-    private fun isAutoPopupEnabled(): Boolean {
-        val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
-        return sharedPreferences.getBoolean("autopopup_enabled", false)
-    }
-*/
 
     private fun updateKeyboardLayout() {
         val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
@@ -187,7 +274,6 @@ class KeyboardService : InputMethodService() {
         if (keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
             altKeyPressed = false
             if (!altTogglePermanent) {
-                // Alt-Tastatur ausblenden, wenn sie temporär eingeblendet wurde
                 toggleAltKeyboard(false)
             }
             return true
@@ -195,7 +281,7 @@ class KeyboardService : InputMethodService() {
 
         if (keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
             if (!altTogglePermanent) {
-                toggleAltKeyboard(false) // Alt-Tastatur ausblenden
+                toggleAltKeyboard(false)
             }
             return true
         }
@@ -228,11 +314,11 @@ class KeyboardService : InputMethodService() {
                 altKeyPressed = true
                 val currentTime = System.currentTimeMillis()
                 if (currentTime - lastAltPressTime < doubleClickInterval) {
-                    // Doppelklick erkannt, Alt-Tastatur dauerhaft umschalten
+
                     altTogglePermanent = !altTogglePermanent
                     toggleAltKeyboard(altTogglePermanent)
                 } else {
-                    // Kein Doppelklick, Alt-Tastatur temporär einblenden
+
                     if (!altTogglePermanent) {
                         toggleAltKeyboard(true)
                     }
@@ -287,172 +373,187 @@ class KeyboardService : InputMethodService() {
 
 
 
-    override fun onCreateInputView(): View {
-        inputView = layoutInflater.inflate(R.layout.keyboard_layout, null)
-        inputView.visibility = View.GONE // Standardmäßig ist die Tastatur unsichtbar
+
+    private fun scrollToTop() {
+        val scrollView = inputView.findViewById<ScrollView>(R.id.emoji_scroll_view)
+        scrollView.post { scrollView.scrollTo(0, 0) }
+    }
 
 
-        inputView = layoutInflater.inflate(R.layout.keyboard_layout, null)
+    private fun setupCategoryButtons() {
+        inputView.findViewById<Button>(R.id.category_1).setOnClickListener {
+            if (shouldVibrate()) {vibrate()}
+            scrollToTop()
+        }
+        inputView.findViewById<Button>(R.id.category_2).setOnClickListener {
+            if (shouldVibrate()) {vibrate()}
+            scrollToCategoryLine(0)
+        }
+        inputView.findViewById<Button>(R.id.category_3).setOnClickListener {
+            if (shouldVibrate()) {vibrate()}
+            scrollToCategoryLine(1)
+        }
+        inputView.findViewById<Button>(R.id.category_4).setOnClickListener {
+            if (shouldVibrate()) {vibrate()}
+            scrollToCategoryLine(2)
+        }
+        inputView.findViewById<Button>(R.id.category_5).setOnClickListener {
+            if (shouldVibrate()) {vibrate()}
+            scrollToCategoryLine(3)
+        }
+        inputView.findViewById<Button>(R.id.category_6).setOnClickListener {
+            if (shouldVibrate()) {vibrate()}
+            scrollToCategoryLine(4)
+        }
+        inputView.findViewById<Button>(R.id.category_7).setOnClickListener {
+            if (shouldVibrate()) {vibrate()}
+            scrollToCategoryLine(5)
+        }
+        inputView.findViewById<Button>(R.id.category_8).setOnClickListener {
+            if (shouldVibrate()) {vibrate()}
+            scrollToCategoryLine(6)
+        }
+        inputView.findViewById<Button>(R.id.category_9).setOnClickListener {
+            if (shouldVibrate()) {vibrate()}
+            scrollToCategoryLine(7)
+        }
 
+
+    }
+
+
+
+    private fun showEmojiCategory(emojis: Array<String>) {
         val emojiContainer = inputView.findViewById<LinearLayout>(R.id.emoji_container)
-        updateKeyboardLayout()
-        updateKeyLabels()
+        emojiContainer.removeAllViews()
+        fillCategoryWithEmojis(emojiContainer, emojis)
+    }
+    private fun scrollToCategoryLine(categoryIndex: Int) {
+        val scrollView = inputView.findViewById<ScrollView>(R.id.emoji_scroll_view)
+        val emojiContainer = inputView.findViewById<LinearLayout>(R.id.emoji_container)
 
-        /* TODO */
-            val emojis = arrayOf(
-                "-","-","-","-",
-                "😀", "😃", "😄", "😁", "😆", "😅", "🤣", "😂", "🙂", "🙃", "🫠", "😉",
-                "😊", "😇", "🥰", "😍", "🤩", "😘", "😗", "😊", "😚", "😙", "🥲", "😋",
-                "😛", "😜", "🤪", "😝", "🤑", "🤗", "🤭", "🫢", "🫣", "🤫", "🤔", "🫡", "🤐",
-                "🤨", "😐", "😑", "😶", "🫥", "😶‍🌫️", "😏", "😒", "🙄", "😬", "😮‍💨", "🤥", "🫨",
-                "😌", "😔", "😪", "🤤", "😴", "😷", "🤒", "🤕", "🤢", "🤮", "🤧", "🥵", "🥶",
-                "🥴", "😵", "😵‍💫", "🤯", "🤠", "🥳", "🥸", "😎", "🤓", "🧐", "😕", "🫤", "😟",
-                "🙁", "☹️", "😮", "😯", "😲", "😳", "🥺", "🥹", "😦", "😧", "😨", "😰", "😥",
-                "😢", "😭", "😱", "😖", "😣", "😞", "😓", "😩", "😫", "🥱", "😤", "😡", "😠",
-                "🤬", "😈", "👿", "💀", "☠️", "💩", "🤡", "-",
-                //--------------------------------------------------------------
-                "😸", "😺","😹", "😻", "😼", "😽", "🙀", "😿", "😾", "🙈", "🙉", "🙊",
-                "💩","💀", "☠️", "👹", "👺", "👻", "👽", "👾", "🤖", "-",
-                //--------------------------------------------------------------
-                "👋", "🤚", "🖐️", "✋", "🖖", "🫱", "🫲", "🫳", "🫴", "🫷", "🫸",
-                "👌", "🤌", "🤏", "✌️", "🤞", "🫰", "🤟", "🤘", "🤙", "👈", "👉", "👆",
-                "🖕", "👇", "☝️", "🫵", "👍", "👎", "✊", "👊", "🤛", "🤜", "👏", "🙌", "🫶",
-                "👐", "🤲", "🤝", "🙏", "✍️", "💪", "🦶", "👂",
-                "👃", "🧠", "🫀", "🫁", "🦷", "🦴", "👀", "👁️", "👅","-",
-                //--------------------------------------------------------------
-                "💖", "💗", "💓", "💔", "❤️‍🔥", "❤️‍🩹", "❤️", "🩷",
-                "🧡", "💛", "💚", "💙", "🩵", "💜", "🤎", "🖤", "🩶",  "🤍",
-                "💋", "💯", "💢", "💥", "💦", "💨", "💬",
-                "💤","-",
-                //--------------------------------------------------------------
-
-                "🐵", "🐶", "🐕", "🐺", "🦊", "🦝", "🐱",
-                "🦁", "🐴", "🦄", "🦓",
-                "🐃", "🐄", "🐷", "🐗", "🐏", "🐑", "🐐", "🐪", "🦙", "🦒", "🐘",
-                "🦣", "🦏", "🐭", "🐹", "🐰", "🐿️", "🦫", "🦔", "🦇", "🐻",
-                "🐻‍❄️", "🐨", "🐼","🦨", "🦘", "🦡", "🐾", "🦃", "🐔", "🐣",
-                "🕊️", "🦅", "🦆", "🦢", "🦉", "🦩", "🦜",
-                "🐸", "🐊", "🐢", "🐍", "🐲", "🦕", "🐳", "🐬", "🐟",
-                "🦈", "🐙", "🐌", "🦋", "🐛", "🐜", "🐝", "🪲", "🐞",
-                "🦗", "🪳", "🕷️", "🕸️", "🌸", "🌹",
-                "🥀", "🌼", "🌷", "🌲", "🌴", "🌵", "☘️",
-                "🍀","-",
-                //--------------------------------------------------------------
-                "🍄", "🍇", "🍉", "🍊", "🍋", "🍌", "🍍", "🥭", "🍎", "🍐", "🍑", "🍒",
-                "🍓", "🫐", "🥝", "🍅", "🫒", "🥥", "🥑", "🍆", "🥔", "🥕", "🌽", "🌶️", "🫑",
-                "🥦", "🧄", "🧅", "🫘","🫛", "🍞", "🥐", "🫓", "🥨",
-                "🥞", "🧇", "🧀", "🍖", "🍗", "🥩", "🥓", "🍔", "🍟", "🍕", "🌭", "🥪", "🌮", "🌯",
-                "🫔", "🥚", "🫕", "🥣", "🧂",
-                "🍙", "🍜", "🍝", "🍣", "🍤",
-                "🦞", "🦐", "🍦", "🍩",
-                "🍪", "🍰", "🧁", "🍫", "🍭", "🥛", "☕", "🫖",
-                "🍾", "🍷", "🍸", "🍹", "🍺","🥂", "🥃",
-                "🧊","🍽️", "🍴", "🥄", "🔪","-",
-                //--------------------------------------------------------------
-                "🌍", "🗺️", "🗻", "🏕️", "🏖️", "🏜️",
-                "🏝️",
-                "🏤", "🏩", "🏪", "🏫", "🏰", "💒",
-                "⛪", "🕌", "🛕", "🕍", "🕋", "⛺", "🌃", "🏙️",
-                "♨️", "🎠", "🛝", "🎡", "🎢", "🎪", "🚅", "🚆",
-                "🚐", "🚑", "🚒", "🚓",
-                "🚔", "🚕", "🚗","🦽",
-                "🚲", "⛽", "🛞", "🚨", "🚦",
-                "⚓", "🚢", "✈️",
-                "🛰️", "🚀", "🛸",
-                "🌙", "🌚",
-                "🌡️", "🪐", "⭐", "🌌", "☁️", "⛅", "⛈️", "🌤️", "🌥️",
-                "🌦️", "🌧️", "🌨️", "🌩️", "🌪️", "🌫️", "🌬️", "🌀", "🌈", "☂️", "⛱️", "⚡",
-                "❄️", "⛄", "🔥", "💧", "🌊","-",
-                //--------------------------------------------------------------
-                "🎃", "🎄", "🎈", "🎉", "🎊",
-                "🎀", "🎁", "🎗️", "🎟️", "🎫", "🎖️", "🏆","⚽",
-                "⚾", "🏀", "🏐", "🏈", "🎳",
-                "🏓", "🥊", "🥋", "🥅", "⛳", "🎣",
-                "🎯", "🪀", "🪁", "🎱", "🔮", "🪄", "🎮", "🎲",
-                "🧸", "🪅", "🪩", "🪆", "♠️", "♥️", "♦️", "♣️", "♟️",
-                "🎨", "🕶️", "🦺", "👔",
-                "🧦", "👗", "🩱",
-                "👛",
-                "🪮", "👑", "👒", "🎩", "🎓", "🪖", "💄", "💍",
-                "💎", "🎵",
-                "🎤", "🎧",  "🎹", "🎺", "🎻",
-                "📱", "📞",
-                "💾", "💿",
-                "📸", "📼", "🔎", "💡",
-                "📃",
-                "💰", "🪙", "💳",
-                "💹", "✉️", "📤", "📥", "📦", "📭",
-                "📮", "✏️", "🖊️", "📝", "📁",
-                "📅", "🗒️", "📇", "📈", "📍", "📎", "📏",
-                "✂️", "🗑️", "🔒", "🔓", "🗝️", "🔨", "🪓",
-                "⛏️", "⚔️", "🪃", "🏹", "🪚", "🔧", "🪛","⚙️",
-                "🧲", "-",
-                //--------------------------------------------------------------
-                "🏧", "🚮", "🚰", "♿", "🚹", "🚺", "🚻", "🚾",
-                "⚠️", "🚸", "⛔", "🚫", "🚳", "🚭", "🚯", "🚱", "🚷", "📵", "🔞", "☢️", "☣️",
-                "🔆", "📶", "🛜", "♀️", "♂️", "⚧️", "✖️", "➕",
-                "➖", "➗", "🟰", "‼️", "⁉️", "❓", "❗", "〰️", "💲", "⚕️",
-                "♻️", "⭕", "✅", "☑️", "✔️", "❌", "❎", "〽️",  "©️", "®️", "™️",
-                "-",
-
-
-                //--------------------------------------------------------------
-                "🇦🇷", "🇦🇺", "🇧🇪", "🇧🇷", "🇨🇦", "🇨🇳", "🇩🇰", "🇪🇬", "🇫🇷", "🇩🇪", "🇬🇷", "🇮🇳", "🇮🇩",
-                "🇮🇷", "🇮🇪", "🇮🇱", "🇮🇹", "🇯🇵", "🇰🇷", "🇲🇽", "🇳🇱", "🇳🇬", "🇳🇴", "🇵🇰", "🇵🇱", "🇵🇹",
-                "🇷🇺", "🇸🇦", "🇸🇬", "🇿🇦", "🇪🇸", "🇸🇪", "🇨🇭", "🇹🇼", "🇹🇭", "🇹🇷", "🇦🇪", "🇬🇧", "🇺🇸", "🇻🇳"
-            )
-
-        var rowLayout: LinearLayout? = null
-        var emojiCount = 0
+        categoryLinePositions[categoryIndex]?.let { position ->
+            val targetView = emojiContainer.getChildAt(position)
+            scrollView.post { scrollView.scrollTo(0, targetView.top) }
+        }
+    }
+    private fun fillCategoryWithEmojis(emojiContainer: LinearLayout, emojis: Array<String>) {
+        val emojisPerRow = 10
+        val screenWidth = resources.displayMetrics.widthPixels
+        val buttonWidth = screenWidth / emojisPerRow
+        var emojisAddedInRow = 0
+        var categoryIndex = 0
 
         emojis.forEach { emoji ->
             if (emoji == "-") {
-
-                val separator = View(this).apply {
+                val dividerView = View(this).apply {
                     layoutParams = LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
-                        10 // Höhe der Linie
-                    ).also {
-                        it.setMargins(0, 10, 0, 10)
-                    }
-                    setBackgroundColor(Color.LTGRAY)
+                        resources.getDimensionPixelSize(R.dimen.divider_height)
+                    ).also { it.setMargins(0, resources.getDimensionPixelSize(R.dimen.divider_margin_vertical), 0, resources.getDimensionPixelSize(R.dimen.divider_margin_vertical)) }
+                    setBackgroundColor(Color.BLACK)
                 }
-                emojiContainer.addView(separator)
+                emojiContainer.addView(dividerView)
 
-                rowLayout = null
-                emojiCount = 0
-            } else {
 
-                if (rowLayout == null || emojiCount == 10) {
-                    rowLayout = LinearLayout(this).apply {
-                        orientation = LinearLayout.HORIZONTAL
-                        layoutParams = LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT
-                        )
-                    }
-                    emojiContainer.addView(rowLayout)
-                    emojiCount = 0
-                }
+                categoryLinePositions[categoryIndex++] = emojiContainer.childCount - 1
 
-                val emojiButton = Button(this).apply {
-                    text = emoji
-                    textSize = 32f
-                    layoutParams = LinearLayout.LayoutParams(
-                        145,
-                        140
-                    )
-                    setBackgroundColor(resources.getColor(android.R.color.transparent))
-                    setPadding(0, 0, 0, 0)
-
-                    setOnClickListener { inputEmoji(emoji) }
-                }
-                rowLayout?.addView(emojiButton)
-                emojiCount++
+                emojisAddedInRow = 0
+                return@forEach
             }
+
+            if (emojisAddedInRow % emojisPerRow == 0) {
+
+                emojiContainer.addView(LinearLayout(this).apply {
+                    orientation = LinearLayout.HORIZONTAL
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
+                })
+                emojisAddedInRow = 0
+            }
+
+            val emojiButton = Button(this).apply {
+                text = emoji
+                textSize = 32f
+                layoutParams = LinearLayout.LayoutParams(
+                    buttonWidth,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+                setBackgroundColor(resources.getColor(android.R.color.transparent))
+                setPadding(0, 0, 0, 0)
+                setOnClickListener { inputEmoji(emoji) }
+            }
+
+
+            (emojiContainer.getChildAt(emojiContainer.childCount - 1) as LinearLayout).addView(emojiButton)
+            emojisAddedInRow++
         }
-       // val inflater = layoutInflater
-        //val inputView = inflater.inflate(R.layout.keyboard_layout, null)
+
+
+    }
+
+    private fun updateCategoryButtons() {
+
+        val firstEmojis = listOf(
+            emoji_I.first(),
+            emoji_II.first(),
+            emoji_III.first(),
+            emoji_IV.first(),
+            emoji_V.first(),
+            emoji_VI.first(),
+            emoji_VII.first(),
+            emoji_VIII.first(),
+            emoji_IX.first()
+        )
+
+
+        inputView.findViewById<Button>(R.id.category_1).text = firstEmojis[0]
+        inputView.findViewById<Button>(R.id.category_2).text = firstEmojis[1]
+        inputView.findViewById<Button>(R.id.category_3).text = firstEmojis[2]
+        inputView.findViewById<Button>(R.id.category_4).text = firstEmojis[3]
+        inputView.findViewById<Button>(R.id.category_5).text = firstEmojis[4]
+        inputView.findViewById<Button>(R.id.category_6).text = firstEmojis[5]
+        inputView.findViewById<Button>(R.id.category_7).text = firstEmojis[6]
+        inputView.findViewById<Button>(R.id.category_8).text = firstEmojis[7]
+        inputView.findViewById<Button>(R.id.category_9).text = firstEmojis[8]
+    }
+
+
+
+
+
+    override fun onCreateInputView(): View {
+        inputView = layoutInflater.inflate(R.layout.keyboard_layout, null)
+
+        val emojiScrollView = inputView.findViewById<ScrollView>(R.id.emoji_scroll_view)
+
+        val paddingTop = resources.getDimensionPixelSize(R.dimen.emoji_scroll_view_padding_top)
+        emojiScrollView.setPadding(emojiScrollView.paddingLeft, paddingTop, emojiScrollView.paddingRight, emojiScrollView.paddingBottom)
+
+        setupCategoryButtons()
+        updateCategoryButtons()
+
+
+        val superEmojiList = emoji_I + arrayOf("-") + emoji_II + arrayOf("-") + emoji_III +
+                arrayOf("-") + emoji_IV + arrayOf("-") + emoji_V + arrayOf("-") +
+                emoji_VI + arrayOf("-") + emoji_VII + arrayOf("-") + emoji_VIII +
+                arrayOf("-") + emoji_IX
+
+        showEmojiCategory(superEmojiList)
+
+
+        updateKeyboardLayout()
+        updateKeyLabels()
+
+
+
+
+
+
+
+
         val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
 
         setupButton(inputView.findViewById(R.id.b1), "button_label_1", sharedPreferences)
@@ -478,6 +579,7 @@ class KeyboardService : InputMethodService() {
         button.setOnClickListener {
             if (label == "\uD83D\uDE00") {
                 toggleEmojiMenu()
+                scrollToTop()
             } else {
                 inputText(label, isShiftPressed, fromPhysicalKeyboard = false)
             }
@@ -517,11 +619,6 @@ class KeyboardService : InputMethodService() {
     fun shouldVibrateOnPhysicalInput(): Boolean {
         val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
         return sharedPreferences.getBoolean("physivibrate", true)
-    }
-
-    fun stickyaltenabled(): Boolean {
-        val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
-        return sharedPreferences.getBoolean("stickyalt", true)
     }
 
     private fun vibrate() {

@@ -10,13 +10,155 @@
     android:translationY="0dp"
     android:background="#000000">
 
-    <!-- Weiße Linie über der Tastatur -->
     <View
         android:id="@+id/white_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#999"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/emoji_categories_menu"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:background="#222222"
+        app:layout_constraintTop_toBottomOf="@id/emoji_scroll_view">
+
+
+
+
+        <Button
+            android:id="@+id/category_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="😁"
+            android:background="#444"
+            android:textColor="#FFFFFF"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp"
+            />
+
+
+        <Button
+            android:id="@+id/category_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="🐵"
+            android:background="#444"
+            android:textColor="#FFFFFF"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp"
+            />
+
+        <Button
+            android:id="@+id/category_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="💖"
+            android:background="#444"
+            android:textColor="#FFFFFF"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp"
+            />
+
+        <Button
+            android:id="@+id/category_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="🐿️"
+            android:background="#444"
+            android:textColor="#FFFFFF"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp"
+            />
+
+
+        <Button
+            android:id="@+id/category_5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="🍔"
+            android:background="#444"
+            android:textColor="#FFFFFF"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp"
+            />
+
+        <Button
+            android:id="@+id/category_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="🌍"
+            android:background="#444"
+            android:textColor="#FFFFFF"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp"
+            />
+
+        <Button
+            android:id="@+id/category_7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="♟️"
+            android:background="#444"
+            android:textColor="#FFFFFF"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp"
+            />
+
+        <Button
+            android:id="@+id/category_8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="🏧"
+            android:background="#444"
+            android:textColor="#FFFFFF"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp"
+            />
+
+        <Button
+            android:id="@+id/category_9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="🏳️"
+            android:background="#444"
+            android:textColor="#FFFFFF"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp"
+            />
+
+
+    </LinearLayout>
 
     <!-- ScrollView für Emoji-Auswahl -->
     <ScrollView
@@ -33,6 +175,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <!-- Emojis werden durch die Activity hinzugefügt -->
         </LinearLayout>
     </ScrollView>
@@ -80,7 +223,7 @@
 
         <Button
             android:id="@+id/b2"
-            android:translationY="3dp"
+            android:translationY="1dp"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="@drawable/button_background"
@@ -302,7 +445,7 @@
         app:layout_constraintStart_toEndOf="@+id/button9_container"
         app:layout_constraintTop_toBottomOf="@id/white_line">
 
-    <Button
+        <Button
             android:id="@+id/b10"
             android:translationY="1dp"
             android:layout_width="fill_parent"
