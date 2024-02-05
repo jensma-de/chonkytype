@@ -52,7 +52,9 @@ The latest release is availabe here: <a href="https://github.com/jensma-de/chonk
 </p>
 
 ToDo:
-- You tell me =)
+- asian letters
+- crash on apply when chonky is disabled or show virtual keyboard disabled
+- I bonked up alt for swapped physical layout again
 
 Searching for an alternative? Give this one a try!
 <a href="https://github.com/runoono/titanSoftKeyboard">titanSoftKeyboard</a>
