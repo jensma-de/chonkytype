@@ -55,6 +55,7 @@ ToDo:
 - asian letters
 - crash on apply when chonky is disabled or show virtual keyboard disabled
 - I bonked up alt for swapped physical layout again
+- cab style typing
 
 Searching for an alternative? Give this one a try!
 <a href="https://github.com/runoono/titanSoftKeyboard">titanSoftKeyboard</a>
