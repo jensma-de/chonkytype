@@ -54,6 +54,7 @@ The latest release is availabe here: <a href="https://github.com/jensma-de/chonk
 ToDo:
 - crash on apply when chonky is disabled or show virtual keyboard disabled
 - cab style typing
+- trigger voice assistant
 - you tell me :)
   
 Searching for an alternative? Give this one a try!
