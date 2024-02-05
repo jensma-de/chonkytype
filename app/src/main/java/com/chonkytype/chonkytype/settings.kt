@@ -9,8 +9,13 @@ import android.content.Context
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.GridView
 import android.widget.SeekBar
+import android.widget.TextView
 
 import android.widget.Toast
 import java.util.Locale
@@ -93,28 +98,28 @@ class SettingsActivity : AppCompatActivity() {
             notifyKeyboardService()
             Toast.makeText(this, "Layout applied!", Toast.LENGTH_SHORT).show()
         }
+/*
+         always enabled
+                val autopopupSwitch = findViewById<SwitchCompat>(R.id.autopopup)
+                autopopupSwitch.isChecked = sharedPreferences.getBoolean("autopopup_enabled", false)
+                autopopupSwitch.setOnCheckedChangeListener { _, isChecked ->
+                    with(sharedPreferences.edit()) {
+                        putBoolean("autopopup_enabled", isChecked)
+                        apply()
+                    }
+                    notifyKeyboardService()
+                }
 
-/* always enabled
-        val autopopupSwitch = findViewById<SwitchCompat>(R.id.autopopup)
-        autopopupSwitch.isChecked = sharedPreferences.getBoolean("autopopup_enabled", false)
-        autopopupSwitch.setOnCheckedChangeListener { _, isChecked ->
-            with(sharedPreferences.edit()) {
-                putBoolean("autopopup_enabled", isChecked)
-                apply()
-            }
-            notifyKeyboardService()
-        }
-
-        val stickyAltSwitch = findViewById<SwitchCompat>(R.id.stickyalt)
-        stickyAltSwitch.isChecked = sharedPreferences.getBoolean("stickyalt", false)
-        stickyAltSwitch.setOnCheckedChangeListener { _, isChecked ->
-            with(sharedPreferences.edit()) {
-                putBoolean("stickyalt", isChecked)
-                apply()
-            }
-            notifyKeyboardService()
-        }
-*/
+                val stickyAltSwitch = findViewById<SwitchCompat>(R.id.stickyalt)
+                stickyAltSwitch.isChecked = sharedPreferences.getBoolean("stickyalt", false)
+                stickyAltSwitch.setOnCheckedChangeListener { _, isChecked ->
+                    with(sharedPreferences.edit()) {
+                        putBoolean("stickyalt", isChecked)
+                        apply()
+                    }
+                    notifyKeyboardService()
+                }
+        */
         val vibrateSwitch = findViewById<SwitchCompat>(R.id.vibrate)
         vibrateSwitch.isChecked = sharedPreferences.getBoolean("vibrate", true)
         vibrateSwitch.setOnCheckedChangeListener { _, isChecked ->
@@ -232,7 +237,7 @@ class SettingsActivity : AppCompatActivity() {
                 "...and everyone else on the unihertz Titan discord server!\n" +
                 "\n" +
                 "Thanks to modulizer for github.com/modularizer/HelloWorldKeyboard!\n\n" +
-                "v1.4 - github.com/chonkytype")
+                "v1.41 - github.com/chonkytype")
         builder.setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
         builder.show()
     }
@@ -242,15 +247,51 @@ class SettingsActivity : AppCompatActivity() {
             "ä", "ö", "ü", "ß", "à", "è", "é", "ì", "ò", "ù", "â", "ê", "î", "ô", "û", "å", "ø", "æ", "œ", "ç", "ñ", "ã", "õ", "ł", "ś", "ź", "ć", "ę", "ą", "ø", "đ", "þ", "ð", "š", "ž", "ý", "í", "ě", "ř", "ů", "ğ", "ı", "ş", "ħ", "ż", "á", "ú", "¡", "¿", "ñ", "ç", "õ", "à", "ē", "ī", "ū", "ō", "ņ", "ķ", "ļ", "č", "ž", "ŗ", "ğ", "ş", "ė", "į", "ų", "ā", "ē", "ī", "ū", "ļ", "ņ", "č", "š", "ž", "ł", "ś", "ź", "ç", "ř", "ž", "ď", "ť", "ň", "â", "ê", "î", "ô", "û", "ä", "ë", "ï", "ö", "ü", "ÿ", "ā", "ē", "ī", "ō", "ū", "ă", "ĕ", "ĭ", "ŏ", "ŭ",
             "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
             "!", "?", "§", "$", "%", "&", "/", "(", ")", "=", "`", "´",
-            "+", "*", "'", "^", "#", "<", ">", "|", ",", ";", ":", "_", "-", ".", "@", "€", "~", "{", "}", "[", "]", "\\", "\uD83D\uDE00",""
+            "+", "*", "'", "^", "#", "<", ">", "|", ",", ";", ":", "_", "-", ".", "@", "€", "~", "{", "}", "[", "]", "\\",
+            "あ", "い", "う", "え", "お",
+            "か", "き", "く", "け", "こ",
+            "さ", "し", "す", "せ", "そ",
+            "た", "ち", "つ", "て", "と",
+            "な", "に", "ぬ", "ね", "の",
+            "は", "ひ", "ふ", "へ", "ほ",
+            "ま", "み", "む", "め", "も",
+            "や",       "ゆ",       "よ",
+            "ら", "り", "る", "れ", "ろ",
+            "わ",                   "を",
+            "ん",
+            "が", "ぎ", "ぐ", "げ", "ご",
+            "ざ", "じ", "ず", "ぜ", "ぞ",
+            "だ", "ぢ", "づ", "で", "ど",
+            "ば", "び", "ぶ", "べ", "ぼ",
+            "ぱ", "ぴ", "ぷ", "ぺ", "ぽ",
+            "\uD83D\uDE00",""
         )
 
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Choose new letter")
-        builder.setItems(characters) { _, which ->
-            updateButtonLabel(buttonIndex, characters[which])
+        val dialogView = layoutInflater.inflate(R.layout.dialog_character_picker, null)
+        val gridView = dialogView.findViewById<GridView>(R.id.gridViewCharacters)
+
+        val charactersAdapter = object : ArrayAdapter<String>(this, R.layout.grid_item_character, characters) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getView(position, convertView, parent) as TextView
+                // Du kannst hier weitere Anpassungen vornehmen
+                view.text = getItem(position) // Setze den Text für jedes Element
+                return view
+            }
         }
-        builder.show()
+
+        gridView.adapter = charactersAdapter
+
+        val builder = AlertDialog.Builder(this)
+        builder.setView(dialogView)
+        val dialog = builder.create()
+
+        gridView.setOnItemClickListener { _, _, position, _ ->
+            val selectedCharacter = characters[position]
+            updateButtonLabel(buttonIndex, selectedCharacter)
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     private fun showAltCharacterPickerDialog(buttonIndex: Int) {
@@ -259,15 +300,51 @@ class SettingsActivity : AppCompatActivity() {
             "ä", "ö", "ü", "ß", "à", "è", "é", "ì", "ò", "ù", "â", "ê", "î", "ô", "û", "å", "ø", "æ", "œ", "ç", "ñ", "ã", "õ", "ł", "ś", "ź", "ć", "ę", "ą", "ø", "đ", "þ", "ð", "š", "ž", "ý", "í", "ě", "ř", "ů", "ğ", "ı", "ş", "ħ", "ż", "á", "ú", "¡", "¿", "ñ", "ç", "õ", "à", "ē", "ī", "ū", "ō", "ņ", "ķ", "ļ", "č", "ž", "ŗ", "ğ", "ş", "ė", "į", "ų", "ā", "ē", "ī", "ū", "ļ", "ņ", "č", "š", "ž", "ł", "ś", "ź", "ç", "ř", "ž", "ď", "ť", "ň", "â", "ê", "î", "ô", "û", "ä", "ë", "ï", "ö", "ü", "ÿ", "ā", "ē", "ī", "ō", "ū", "ă", "ĕ", "ĭ", "ŏ", "ŭ",
             "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
             "!", "?", "§", "$", "%", "&", "/", "(", ")", "=", "`", "´",
-            "+", "*", "'", "^", "#", "<", ">", "|", ",", ";", ":", "_", "-", ".", "@", "€", "~", "{", "}", "[", "]", "\\", "\uD83D\uDE00",""
+            "+", "*", "'", "^", "#", "<", ">", "|", ",", ";", ":", "_", "-", ".", "@", "€", "~", "{", "}", "[", "]", "\\",
+            "あ", "い", "う", "え", "お",
+            "か", "き", "く", "け", "こ",
+            "さ", "し", "す", "せ", "そ",
+            "た", "ち", "つ", "て", "と",
+            "な", "に", "ぬ", "ね", "の",
+            "は", "ひ", "ふ", "へ", "ほ",
+            "ま", "み", "む", "め", "も",
+            "や",       "ゆ",       "よ",
+            "ら", "り", "る", "れ", "ろ",
+            "わ",                   "を",
+            "ん",
+            "が", "ぎ", "ぐ", "げ", "ご",
+            "ざ", "じ", "ず", "ぜ", "ぞ",
+            "だ", "ぢ", "づ", "で", "ど",
+            "ば", "び", "ぶ", "べ", "ぼ",
+            "ぱ", "ぴ", "ぷ", "ぺ", "ぽ",
+            "\uD83D\uDE00",""
         )
 
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Choose new letter for ALT")
-        builder.setItems(characters) { _, which ->
-            updateAltButtonLabel(buttonIndex, characters[which])
+        val dialogView = layoutInflater.inflate(R.layout.dialog_character_picker, null)
+        val gridView = dialogView.findViewById<GridView>(R.id.gridViewCharacters)
+
+        val charactersAdapter = object : ArrayAdapter<String>(this, R.layout.grid_item_character, characters) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getView(position, convertView, parent) as TextView
+                // Du kannst hier weitere Anpassungen vornehmen
+                view.text = getItem(position) // Setze den Text für jedes Element
+                return view
+            }
         }
-        builder.show()
+
+        gridView.adapter = charactersAdapter
+
+        val builder = AlertDialog.Builder(this)
+        builder.setView(dialogView)
+        val dialog = builder.create()
+
+        gridView.setOnItemClickListener { _, _, position, _ ->
+            val selectedCharacter = characters[position]
+            updateAltButtonLabel(buttonIndex, selectedCharacter)
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     private fun updateAltButtonLabel(buttonIndex: Int, label: String) {

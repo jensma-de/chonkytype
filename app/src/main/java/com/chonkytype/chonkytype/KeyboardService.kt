@@ -341,18 +341,26 @@ class KeyboardService : InputMethodService() {
         }
 
         if (event.deviceId != KeyCharacterMap.VIRTUAL_KEYBOARD) {
-            if (isSwapEnabled) {
-                when (keyCode) {
-                    KeyEvent.KEYCODE_Z -> {
-                        val textToInput = if (isAltPressed) "!" else "y"
-                        inputText(textToInput, isShiftPressed, fromPhysicalKeyboard = true)
-
+            when (keyCode) {
+                KeyEvent.KEYCODE_Y -> {
+                    if (isAltPressed) {
+                        // ALT + Y
+                        inputText(if (isSwapEnabled) "Z" else ")", isShiftPressed, fromPhysicalKeyboard = true)
+                        return true
+                    } else if (isShiftPressed) {
+                        // SHIFT + Y
+                        inputText(if (isSwapEnabled) "Z" else "Y", true, fromPhysicalKeyboard = true)
                         return true
                     }
-                    KeyEvent.KEYCODE_Y -> {
-                        val textToInput = if (isAltPressed) ")" else "z"
-                        inputText(textToInput, isShiftPressed, fromPhysicalKeyboard = true)
-
+                }
+                KeyEvent.KEYCODE_Z -> {
+                    if (isAltPressed) {
+                        // ALT + Z
+                        inputText(if (isSwapEnabled) "Y" else "!", isShiftPressed, fromPhysicalKeyboard = true)
+                        return true
+                    } else if (isShiftPressed) {
+                        // SHIFT + Z
+                        inputText(if (isSwapEnabled) "Y" else "Z", true, fromPhysicalKeyboard = true)
                         return true
                     }
                 }
