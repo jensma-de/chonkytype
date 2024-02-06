@@ -28,6 +28,7 @@ class KeyboardService : InputMethodService() {
     private lateinit var inputView: View
     private var isShiftPressed = false
     private var isSwapEnabled = false
+    private var isCabEnabled = false
     private var shouldVibrate = true
     private var shouldPhysiVibrate = true
     private var isAltKeyboardEnabled = false
@@ -46,7 +47,7 @@ class KeyboardService : InputMethodService() {
 
     private val emoji_I = arrayOf(
         "😀", "😃", "😄", "😁", "😆", "😅", "🤣", "😂", "🙂", "🙃",
-         "🫠", "😉",  "😊", "😇", "🥰", "😍", "🤩", "😘", "😗", "😊",
+        "🫠", "😉",  "😊", "😇", "🥰", "😍", "🤩", "😘", "😗", "😊",
         "😚", "😙", "🥲", "😋", "😛", "😜", "🤪", "😝", "🤑", "🤗", "🤭", "🫢", "🫣", "🤫", "🤔", "🫡", "🤐",
         "🤨", "😐", "😑", "😶", "🫥", "😶‍🌫️", "😏", "😒", "🙄", "😬", "😮‍💨", "🤥", "🫨",
         "😌", "😔", "😪", "🤤", "😴", "😷", "🤒", "🤕", "🤢", "🤮", "🤧", "🥵", "🥶",
@@ -147,7 +148,7 @@ class KeyboardService : InputMethodService() {
 
             emojiScrollView.visibility = View.VISIBLE
             isEmojiMenuOpen = true
-                } else {
+        } else {
             emojiScrollView.visibility = View.GONE
             isEmojiMenuOpen = false
 
@@ -194,6 +195,7 @@ class KeyboardService : InputMethodService() {
     private fun loadSettings() {
         val sharedPreferences = getSharedPreferences("com.chonkytype.chonkytype_preferences", Context.MODE_PRIVATE)
         isSwapEnabled = sharedPreferences.getBoolean("swap_keys", false)
+        isCabEnabled = sharedPreferences.getBoolean("swap_keys", false)
         shouldVibrate = sharedPreferences.getBoolean("vibrate", true)
         shouldPhysiVibrate = sharedPreferences.getBoolean("physivibrate", true)
         isAltKeyboardEnabled = sharedPreferences.getBoolean("altkeyboard", false)
@@ -310,6 +312,7 @@ class KeyboardService : InputMethodService() {
         }
 
         if (keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
+
             if (!altKeyPressed) {
                 altKeyPressed = true
                 val currentTime = System.currentTimeMillis()
@@ -332,35 +335,21 @@ class KeyboardService : InputMethodService() {
 
         isShiftPressed = event.isShiftPressed
 
-        if (keyCode == KeyEvent.KEYCODE_ALT_RIGHT) {
-            isAltPressed = true
-            if (isAltKeyboardEnabled) {
-                toggleAltKeyboard(true)
-            }
-            return true
-        }
 
         if (event.deviceId != KeyCharacterMap.VIRTUAL_KEYBOARD) {
-            when (keyCode) {
-                KeyEvent.KEYCODE_Y -> {
-                    if (isAltPressed) {
-                        // ALT + Y
-                        inputText(if (isSwapEnabled) "Z" else ")", isShiftPressed, fromPhysicalKeyboard = true)
-                        return true
-                    } else if (isShiftPressed) {
-                        // SHIFT + Y
-                        inputText(if (isSwapEnabled) "Z" else "Y", true, fromPhysicalKeyboard = true)
+            val isAltCurrentlyPressed = event.isAltPressed()
+            if (isSwapEnabled) {
+                when (keyCode) {
+                    KeyEvent.KEYCODE_Z -> {
+                        val textToInput = if (isAltCurrentlyPressed) "!" else "y"
+                        inputText(textToInput, isShiftPressed, fromPhysicalKeyboard = true)
+
                         return true
                     }
-                }
-                KeyEvent.KEYCODE_Z -> {
-                    if (isAltPressed) {
-                        // ALT + Z
-                        inputText(if (isSwapEnabled) "Y" else "!", isShiftPressed, fromPhysicalKeyboard = true)
-                        return true
-                    } else if (isShiftPressed) {
-                        // SHIFT + Z
-                        inputText(if (isSwapEnabled) "Y" else "Z", true, fromPhysicalKeyboard = true)
+                    KeyEvent.KEYCODE_Y -> {
+                        val textToInput = if (isAltCurrentlyPressed) ")" else "z"
+                        inputText(textToInput, isShiftPressed, fromPhysicalKeyboard = true)
+
                         return true
                     }
                 }
@@ -368,6 +357,7 @@ class KeyboardService : InputMethodService() {
 
 
         }
+
 
         if (keyCode == KeyEvent.KEYCODE_SHIFT_LEFT || keyCode == KeyEvent.KEYCODE_SHIFT_RIGHT) {
             isShiftPressed = true
@@ -641,6 +631,3 @@ class KeyboardService : InputMethodService() {
         }
     }
 }
-
-
-

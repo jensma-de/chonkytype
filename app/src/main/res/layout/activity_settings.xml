@@ -455,15 +455,16 @@
                 android:textColor="#ffffff"
                 android:paddingLeft="10dp"
                 />
-
+<!--
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/cabtype"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enable ALT keyboard "
+                android:text="Enable cab type* "
                 android:textColor="#ffffff"
                 android:paddingLeft="10dp"
                 />
+                -->
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
@@ -530,7 +531,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
-        android:text="\?"
+        android:text="\*?"
         android:padding="8dp"
     android:background="@android:color/transparent"
     android:minHeight="0dp"

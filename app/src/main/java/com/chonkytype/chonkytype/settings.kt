@@ -96,7 +96,7 @@ class SettingsActivity : AppCompatActivity() {
         applyLayoutButton.setOnClickListener {
 
             notifyKeyboardService()
-            Toast.makeText(this, "Layout applied!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Layouts applied!", Toast.LENGTH_SHORT).show()
         }
 /*
          always enabled
@@ -150,7 +150,17 @@ class SettingsActivity : AppCompatActivity() {
             }
             notifyKeyboardService()
         }
-
+/*
+        val cabTypeSwitch = findViewById<SwitchCompat>(R.id.cabtype)
+        cabTypeSwitch.isChecked = sharedPreferences.getBoolean("cab_type", false)
+        cabTypeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            with(sharedPreferences.edit()) {
+                putBoolean("cab_type", isChecked)
+                apply()
+            }
+            notifyKeyboardService()
+        }
+*/
         val altKeyboardSwitch = findViewById<SwitchCompat>(R.id.altkeyboard)
         altKeyboardSwitch.isChecked = sharedPreferences.getBoolean("altkeyboard", false)
         altKeyboardSwitch.setOnCheckedChangeListener { _, isChecked ->
@@ -230,14 +240,16 @@ class SettingsActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
 
         builder.setMessage("Thanks to:\n" +
-                "rumplestilzken\n" +
-                "vddCore\n" +
-                "runoono\n" +
+                "rumplestilzken, " +
+                "vddCore, " +
+                "runoono, " +
                 "TechEdison\n" +
                 "...and everyone else on the unihertz Titan discord server!\n" +
                 "\n" +
-                "Thanks to modulizer for github.com/modularizer/HelloWorldKeyboard!\n\n" +
-                "v1.41 - github.com/chonkytype")
+               // "*: cab type was suggested by the user cab on discord: you press ALT or SHIFT once and the modifier will only applied to the next keypress.\n" +
+                "\nThanks to modulizer for github.com/modularizer/HelloWorldKeyboard!\n\nsvg icons by veryicon.com\n" +
+                "\n" +
+                "v1.45 - github.com/chonkytype")
         builder.setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
         builder.show()
     }
@@ -264,6 +276,7 @@ class SettingsActivity : AppCompatActivity() {
             "だ", "ぢ", "づ", "で", "ど",
             "ば", "び", "ぶ", "べ", "ぼ",
             "ぱ", "ぴ", "ぷ", "ぺ", "ぽ",
+            //"\uD83D\uDE00","🎤",""
             "\uD83D\uDE00",""
         )
 
@@ -326,8 +339,7 @@ class SettingsActivity : AppCompatActivity() {
         val charactersAdapter = object : ArrayAdapter<String>(this, R.layout.grid_item_character, characters) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent) as TextView
-                // Du kannst hier weitere Anpassungen vornehmen
-                view.text = getItem(position) // Setze den Text für jedes Element
+                view.text = getItem(position)
                 return view
             }
         }
