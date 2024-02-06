@@ -52,11 +52,11 @@ The latest release is availabe here: <a href="https://github.com/jensma-de/chonk
 </p>
 
 ToDo:
-- asian letters
 - crash on apply when chonky is disabled or show virtual keyboard disabled
-- I bonked up alt for swapped physical layout again
 - cab style typing
-
+- trigger voice assistant
+- you tell me :)
+  
 Searching for an alternative? Give this one a try!
 <a href="https://github.com/runoono/titanSoftKeyboard">titanSoftKeyboard</a>
 
