@@ -55,7 +55,6 @@ ToDo:
 - crash on apply when chonky is disabled or show virtual keyboard disabled
 - cab style typing
 - trigger voice assistant
-- add vector icons for emoji/voice-buttons to better blend in
 - you tell me :)
   
 Searching for an alternative? Give this one a try!
